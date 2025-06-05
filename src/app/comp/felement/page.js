@@ -1,17 +1,34 @@
-"use client";
+'use client';
 
 import { Canvas } from "@react-three/fiber";
 import { Float, Text3D, OrbitControls, Environment } from "@react-three/drei";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
+import { checkWebGLAvailability } from "@/lib/webglUtils";
 
 function FloatingIcon({ position, text, color }) {
   const [font, setFont] = useState(null);
+  const mountedRef = useRef(false);
 
   useEffect(() => {
-    // Dynamically import the FontLoader and load the font
-    import('three/examples/jsm/loaders/FontLoader').then(({ FontLoader }) => {
-      new FontLoader().load('/Inter_Bold.json', setFont);
-    });
+    mountedRef.current = true;
+    
+    const loadFont = async () => {
+      try {
+        const { FontLoader } = await import('three/examples/jsm/loaders/FontLoader');
+        const loader = new FontLoader();
+        loader.load('/Inter_Bold.json', (loadedFont) => {
+          if (mountedRef.current) setFont(loadedFont);
+        });
+      } catch (error) {
+        console.error('Error loading font:', error);
+      }
+    };
+
+    loadFont();
+
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
 
   if (!font) return null;
@@ -55,6 +72,14 @@ function Scene() {
 }
 
 export default function FloatingElements() {
+  const [webGLAvailable, setWebGLAvailable] = useState(false);
+
+  useEffect(() => {
+    setWebGLAvailable(checkWebGLAvailability());
+  }, []);
+
+  if (!webGLAvailable) return null;
+
   return (
     <div className="fixed inset-0 pointer-events-none z-10">
       <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>

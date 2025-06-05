@@ -74,9 +74,9 @@ export const projects = [
     youtubeId: "4tBpLehQ5mo",
     videoUrl: "/placeholder.svg?height=400&width=600",
     liveUrl: "https://image-gen-demo.vercel.app",
-    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/chat-with-MultiplePDF",
-    startDate: "May 2024",
-    endDate: "Present",
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Image-gen",
+    startDate: "7/dec/2024",
+    endDate: "12/dec/2024",
     status: "Live",
     technologies: ["Next.js", "Tailwind CSS", "Supabase", "Cloudinary", "Hono", "Shadcn", "Turbopack"],
     features: [
@@ -104,9 +104,9 @@ export const projects = [
     description: "A Streamlit app that allows users to chat with multiple PDFs using LangChain and Google Generative AI (Gemini).",
     youtubeId: "D1LpLG2Snvg",
     liveUrl: "https://pdf-chat-app-demo.vercel.app",
-    githubUrl: "https://github.com/username/pdf-chat-app",
-    startDate: "Jun 2024",
-    endDate: "Present",
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/-Chat-with-multiple-pdf",
+    startDate: "25/Nov/2024",
+    endDate: "25/Nov/2024",
     status: "Live",
     technologies: ["Streamlit", "PyPDF2", "LangChain", "Google Generative AI", "FAISS", "dotenv"],
     features: [
@@ -214,19 +214,18 @@ export const projects = [
       "Model Interpretability",
       "Clinical Workflow Integration"
     ],
-    demoUrl: "https://mammography-ai-demo.vercel.app",
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/MammographyAi/blob/main/Untitled6.ipynb",
     researchPaper: "https://arxiv.org/abs/example123"
   },
-  ,
   {
     id: 10,
-    title: "Research Agent ",
+    title: "Research Agent",
     subtitle: "Research Agent using CrewAi and local LLm",
     description: "Senior Data Researcher that Uncover cutting-edge developments in the given topic.",
-    startDate: "April 2025",
-    endDate: "April 2025",
+    startDate: "6 /April/ 2025",
+    endDate: "10/April 2025",
     status: "Research",
-    technologies: ["CrewAi", "python", ,"CrewAi-tools","Local-llm", "ollama/llama3.2:1b", "", "", ""],
+    technologies: ["CrewAi", "python", "CrewAi-tools", "Local-llm", "ollama/llama3.2:1b"],
     features: [
       { icon: HeartPulse, text: "92% AUC Score", color: "text-cyan-400" },
       { icon: BrainCircuit, text: "Multi-Model Architecture", color: "text-purple-400" },
@@ -264,7 +263,7 @@ export const projects = [
       "Model Interpretability",
       "Clinical Workflow Integration"
     ],
-    demoUrl: "https://mammography-ai-demo.vercel.app",
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Research-Agent-CrewAi-and-Ollama-local-llm-",
     researchPaper: "https://arxiv.org/abs/example123"
   },
   {
@@ -310,8 +309,8 @@ export const projects = [
     title: "RecipeApp",
     subtitle: "MealDB API Explorer",
     description: "React application that fetches and displays recipes from the MealDB API with responsive design and interactive features.",
-    startDate: "Mar 2024",
-    endDate: "Mar 2024",
+    startDate: "1/ Sep/ 2023",
+    endDate: "2 /Sep /2023",
     status: "Live",
     technologies: ["React.js", "MealDB API", "CSS3", "JavaScript", "HTML5"],
     features: [
@@ -342,6 +341,6 @@ export const projects = [
       "Component Lifecycle"
     ],
     liveUrl: "https://recipe-app-demo.vercel.app",
-    githubUrl: "https://github.com/username/recipe-app"
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Recipe-App"
   }
 ]

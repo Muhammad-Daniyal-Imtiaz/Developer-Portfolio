@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { LlamaCloudIndex } from "llamaindex";
 
-export const runtime = 'edge'; // Optional: use edge runtime for faster responses
+// Remove the edge runtime - this will make it a regular Serverless Function
+// export const runtime = 'edge'; // ← Remove or comment this line
 
 export async function POST(request) {
   try {
@@ -14,15 +15,13 @@ export async function POST(request) {
       );
     }
 
-    // Initialize LlamaCloudIndex with your configuration
     const index = new LlamaCloudIndex({
-      name: "ethnic-mandrill-2025-06-02", // Your index name
+      name: "ethnic-mandrill-2025-06-02",
       projectName: "Default",
-      organizationId: "2dc37c55-d35a-4681-b1f0-bdde341645e4", // Your org ID
+      organizationId: "2dc37c55-d35a-4681-b1f0-bdde341645e4",
       apiKey: process.env.LLAMA_CLOUD_API_KEY,
     });
 
-    // Configure retriever
     const retriever = index.asRetriever({
       similarityTopK: 5,
       sparseSimilarityTopK: 3,
@@ -31,12 +30,8 @@ export async function POST(request) {
       rerankTopN: 3,
     });
 
-    // Retrieve relevant nodes
-    const nodes = await retriever.retrieve({
-      query: message
-    });
+    const nodes = await retriever.retrieve({ query: message });
 
-    // Extract and format the response
     const responseContent = nodes
       .map(node => node.node.getContent())
       .join('\n\n');

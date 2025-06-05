@@ -67,13 +67,13 @@ export default function ContactSection() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-500/20 rounded-full px-6 py-3 mb-6">
             <MessageCircle className="w-6 h-6 text-cyan-400 animate-pulse" />
-            <span className="text-cyan-400 font-medium">Let's Connect</span>
+            <span className="text-cyan-400 font-medium">Let&apos;s Connect</span>
           </div>
           <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Let's Connect
+            Let&apos;s Connect
           </h2>
           <p className="text-gray-200 text-xl max-w-3xl mx-auto leading-relaxed">
-            Ready to collaborate on your next project? Let's discuss how we can build something{" "}
+            Ready to collaborate on your next project? Let&apos;s discuss how we can build something{" "}
             <span className="text-cyan-300 font-semibold">amazing</span> together with{" "}
             <span className="text-purple-300 font-semibold">cutting-edge technology</span>.
           </p>
@@ -94,7 +94,7 @@ export default function ContactSection() {
                 </div>
                 Send a Message
               </CardTitle>
-              <p className="text-gray-200">I'll get back to you within 24 hours</p>
+              <p className="text-gray-200">I&apos;ll get back to you within 24 hours</p>
             </CardHeader>
 
             <CardContent className="relative z-10">
@@ -235,10 +235,10 @@ export default function ContactSection() {
                   <Button
                     variant="outline"
                     className="w-full justify-start border-gray-700 text-gray-300 hover:border-cyan-500 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all duration-200 group"
-                    onClick={() => window.open("mailto:your.email@example.com")}
+                    onClick={() => window.open("mailto:daniyalimtiaz041@gmail.com")}
                   >
                     <Mail className="w-5 h-5 mr-3 group-hover:animate-pulse" />
-                   daniyalimtiaz041@gmail.com
+                    daniyalimtiaz041@gmail.com
                     <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       <Star className="w-4 h-4 text-yellow-400" />
                     </div>
