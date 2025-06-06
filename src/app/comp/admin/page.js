@@ -17,7 +17,7 @@ export default function AdminPage() {
     try {
       setLoading(true);
       setError('');
-      const response = await fetch('/api/fetchMessages', {
+      const response = await fetch('/api/fetmessage', {
         headers: {
           'Authorization': `Bearer ${password}`
         }

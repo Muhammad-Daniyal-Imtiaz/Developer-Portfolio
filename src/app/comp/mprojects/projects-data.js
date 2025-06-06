@@ -169,6 +169,43 @@ export const projects = [
     ]
   },
   {
+    id: 8,
+    title: "StabilityAI Stable Diffusion 3.5 Large",
+    subtitle: "AI Image Generation App",
+    description: "A Gradio-based AI image generator using StabilityAI's Stable Diffusion 3.5 Large model, deployed on Hugging Face Spaces.",
+    startDate: "about 2 months ago",
+    endDate: "about 2 months ago",
+    status: "Live",
+    technologies: ["Gradio", "Python", "Hugging Face Spaces", "Stable Diffusion 3.5", "Fal.ai API"],
+    features: [
+      { icon: Image, text: "AI Image Generation", color: "text-cyan-400" },
+      { icon: Palette, text: "Prompt Customization", color: "text-purple-400" },
+      { icon: Shield, text: "Secure API Integration", color: "text-green-400" },
+      { icon: Globe, text: "Hugging Face Deployment", color: "text-yellow-400" },
+      { icon: Cpu, text: "Fast SDXL Model", color: "text-red-400" },
+      { icon: Users, text: "User-friendly Interface", color: "text-blue-400" }
+    ],
+    metrics: {
+      users: "Hugging Face Community",
+      uptime: "99.8%",
+      performance: 94,
+      security: 90,
+    },
+    gradient: "from-violet-500 to-indigo-600",
+    liveUrl: "https://huggingface.co/spaces/DaniDaniels/stabilityai-stable-diffusion-3.5-large",
+    githubUrl: "https://huggingface.co/spaces/DaniDaniels/stabilityai-stable-diffusion-3.5-large/tree/main",
+    skills: [
+      "Gradio Interface",
+      "Python",
+      "API Integration",
+      "Hugging Face Spaces",
+      "Stable Diffusion",
+      "Image Generation",
+      "Prompt Engineering",
+      "Negative Prompt Handling"
+    ]
+  },
+  {
     id: 5,
     title: "Mammography AI",
     subtitle: "Breast Cancer Classification System",
