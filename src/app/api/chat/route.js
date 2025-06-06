@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { LlamaCloudIndex } from "@llamaindex/cloud"
+import { LlamaCloudIndex } from "llamaindex"
 // Remove the edge runtime - this will make it a regular Serverless Function
 // export const runtime = 'edge'; // ← Remove or comment this line
 
