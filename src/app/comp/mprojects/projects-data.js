@@ -36,7 +36,7 @@ import {
   Utensils,
   ListRestart,
   Smartphone
-} from "lucide-react"
+} from "lucide-react";
 
 export const projects = [
   {
@@ -51,6 +51,7 @@ export const projects = [
     startDate: "Jan 2024",
     endDate: "Present",
     status: "Live",
+    videoAvailable: true,
     technologies: ["Next.js 15", "Supabase", "WebSockets", "Stripe", "Google Vision API", "Tailwind CSS"],
     features: [
       { icon: Activity, text: "Real-time bidding", color: "text-cyan-400" },
@@ -71,13 +72,14 @@ export const projects = [
     title: "Image-Gen",
     subtitle: "AI Image Generator App",
     description: "An AI Image Generator app using Next.js that leverages advanced technologies to bring AI-generated images to life.",
-    youtubeId: "4tBpLehQ5mo",
+    youtubeId: "YRrcWkOyxPs",
     videoUrl: "/placeholder.svg?height=400&width=600",
     liveUrl: "https://image-gen-demo.vercel.app",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Image-gen",
     startDate: "7/dec/2024",
     endDate: "12/dec/2024",
     status: "Live",
+    videoAvailable: true,
     technologies: ["Next.js", "Tailwind CSS", "Supabase", "Cloudinary", "Hono", "Shadcn", "Turbopack"],
     features: [
       { icon: Globe, text: "Dynamic Header", color: "text-red-400" },
@@ -99,15 +101,16 @@ export const projects = [
   },
   {
     id: 3,
-    title: "PDF Chat App",
+    title: "Multiple PDF Chat App",
     subtitle: "Interactive PDF Conversational Interface",
     description: "A Streamlit app that allows users to chat with multiple PDFs using LangChain and Google Generative AI (Gemini).",
-    youtubeId: "D1LpLG2Snvg",
+    youtubeId: "HCHF8BneqV8",
     liveUrl: "https://pdf-chat-app-demo.vercel.app",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/-Chat-with-multiple-pdf",
     startDate: "25/Nov/2024",
     endDate: "25/Nov/2024",
     status: "Live",
+    videoAvailable: true,
     technologies: ["Streamlit", "PyPDF2", "LangChain", "Google Generative AI", "FAISS", "dotenv"],
     features: [
       { icon: Database, text: "Multiple PDF Support", color: "text-green-400" },
@@ -125,12 +128,14 @@ export const projects = [
   },
   {
     id: 4,
-    title: "Cricket Predictor",
-    subtitle: "Runs & Winner Prediction System",
+    title: "Cricket Runs And Win Predictor for Psl",
+    subtitle: "Runs & Winner Prediction System trained on 278 Psl Matches",
     description: "Machine learning system to predict second-innings runs and match winners using historical cricket data, developed in association with NUST.",
+    youtubeId: "FW8QQd1dQ5w",
     startDate: "Jan 2025",
     endDate: "Jan 2025",
     status: "Demo",
+    videoAvailable: true,
     technologies: ["Python", "Pandas", "XGBoost", "Scikit-learn", "PyYAML", "GridSearchCV", "KFold"],
     features: [
       { icon: BarChart2, text: "Dual Prediction System", color: "text-cyan-400" },
@@ -176,6 +181,7 @@ export const projects = [
     startDate: "about 2 months ago",
     endDate: "about 2 months ago",
     status: "Live",
+    videoAvailable: false,
     technologies: ["Gradio", "Python", "Hugging Face Spaces", "Stable Diffusion 3.5", "Fal.ai API"],
     features: [
       { icon: Image, text: "AI Image Generation", color: "text-cyan-400" },
@@ -209,10 +215,12 @@ export const projects = [
     id: 5,
     title: "Mammography AI",
     subtitle: "Breast Cancer Classification System",
+    youtubeId: "HJj4c_CaywI",
     description: "Deep learning system for automated breast cancer detection from mammograms using the Vindr-Mammo dataset, developed in association with NUST.",
-    startDate: "May 2025",
-    endDate: "May 2025",
+    startDate: "5 May 2025",
+    endDate: "10 May 2025",
     status: "Research",
+    videoAvailable: true,
     technologies: ["TensorFlow/Keras", "EfficientNetB0", "Vision Transformer", "Gradio", "Streamlit", "DICOM", "OpenCV"],
     features: [
       { icon: HeartPulse, text: "92% AUC Score", color: "text-cyan-400" },
@@ -252,16 +260,18 @@ export const projects = [
       "Clinical Workflow Integration"
     ],
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/MammographyAi/blob/main/Untitled6.ipynb",
-    researchPaper: "https://arxiv.org/abs/example123"
+    researchPaper: "https://arxiv.org/abs/example123",
+    VideoUrl: "/placeholder.svg?height=400&width=600"
   },
   {
     id: 10,
     title: "Research Agent",
     subtitle: "Research Agent using CrewAi and local LLm",
     description: "Senior Data Researcher that Uncover cutting-edge developments in the given topic.",
-    startDate: "6 /April/ 2025",
-    endDate: "10/April 2025",
+    startDate: "6 April 2025",
+    endDate: "10 April 2025",
     status: "Research",
+    videoAvailable: false,
     technologies: ["CrewAi", "python", "CrewAi-tools", "Local-llm", "ollama/llama3.2:1b"],
     features: [
       { icon: HeartPulse, text: "92% AUC Score", color: "text-cyan-400" },
@@ -311,6 +321,7 @@ export const projects = [
     startDate: "Oct 2024",
     endDate: "Oct 2024",
     status: "Demo",
+    videoAvailable: false,
     technologies: ["Streamlit", "Ollama", "LLaMA", "LiteLLM", "Python", "GitHub"],
     features: [
       { icon: MessageSquare, text: "Conversational AI", color: "text-cyan-400" },
@@ -346,9 +357,10 @@ export const projects = [
     title: "RecipeApp",
     subtitle: "MealDB API Explorer",
     description: "React application that fetches and displays recipes from the MealDB API with responsive design and interactive features.",
-    startDate: "1/ Sep/ 2023",
-    endDate: "2 /Sep /2023",
+    startDate: "1 Sep 2023",
+    endDate: "2 Sep 2023",
     status: "Live",
+    videoAvailable: true,
     technologies: ["React.js", "MealDB API", "CSS3", "JavaScript", "HTML5"],
     features: [
       { icon: CookingPot, text: "API Integration", color: "text-cyan-400" },
@@ -380,4 +392,4 @@ export const projects = [
     liveUrl: "https://recipe-app-demo.vercel.app",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Recipe-App"
   }
-]
+];

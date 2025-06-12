@@ -33,46 +33,46 @@ export default function Portfolio() {
   const [error, setError] = useState(null);
   const messagesEndRef = useRef(null);
 
-  // Chat Handlers
-const handleSendMessage = async () => {
-  if (!inputValue.trim() || isLoading) return;
-  setError(null);
+  const handleSendMessage = async () => {
+    if (!inputValue.trim() || isLoading) return;
+    setError(null);
 
-  const userMessage = { role: "user", content: inputValue };
-  setMessages(prev => [...prev, userMessage]);
-  setInputValue("");
-  setIsLoading(true);
+    const userMessage = { role: "user", content: inputValue };
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue("");
+    setIsLoading(true);
 
-  try {
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ message: inputValue }),
-    });
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: inputValue }),
+      });
 
-    const data = await response.json();
-    
-    if (!response.ok) {
-      throw new Error(data.error || 'Failed to get response');
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to get response');
+      }
+
+      setMessages(prev => [...prev, { 
+        role: "assistant", 
+        content: data.response || "I didn't get a proper response"
+      }]);
+    } catch (error) {
+      console.error("Chat error:", error);
+      setError(error.message || "Failed to get response");
+      setMessages(prev => [...prev, {
+        role: "assistant",
+        content: "Sorry, I encountered an error. Please try again."
+      }]);
+    } finally {
+      setIsLoading(false);
     }
+  };
 
-    setMessages(prev => [...prev, { 
-      role: "assistant", 
-      content: data.response || "I didn't get a proper response"
-    }]);
-  } catch (error) {
-    console.error("Chat error:", error);
-    setError(error.message || "Failed to get response");
-    setMessages(prev => [...prev, {
-      role: "assistant",
-      content: "Sorry, I encountered an error. Please try again."
-    }]);
-  } finally {
-    setIsLoading(false);
-  }
-};
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -101,7 +101,7 @@ const handleSendMessage = async () => {
         <ContactSection />
       </main>
 
-      {/* Chat Interface */}
+      {/* Enhanced Chat Interface */}
       <AnimatePresence>
         {isChatOpen && (
           <motion.div
@@ -137,13 +137,19 @@ const handleSendMessage = async () => {
                     className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-2xl rounded-xl px-5 py-3 ${
+                      className={`max-w-2xl rounded-xl px-5 py-4 ${
                         message.role === "user"
                           ? "bg-blue-600 text-white rounded-br-none"
                           : "bg-gray-700 text-gray-200 rounded-bl-none"
                       }`}
                     >
-                      {message.content}
+                      <div className="prose prose-invert max-w-none">
+                        {message.content.split('\n').map((paragraph, i) => (
+                          <p key={i} className="mb-3 last:mb-0 leading-relaxed">
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ))}

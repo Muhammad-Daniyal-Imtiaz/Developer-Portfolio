@@ -1,11 +1,10 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import YouTube from "react-youtube"
+'use client';
+import { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import YouTube from "react-youtube";
 import {
   ChevronLeft,
   ChevronRight,
@@ -26,65 +25,57 @@ import {
   Activity,
   X,
   Maximize2,
-} from "lucide-react"
-import { projects } from "./projects-data"
+} from "lucide-react";
+import { projects } from "./projects-data";
 
 export default function ProjectsCarousel() {
-  const [currentProject, setCurrentProject] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [animationDirection, setAnimationDirection] = useState("right")
-  const [particles, setParticles] = useState([])
-  const [fullscreenVideo, setFullscreenVideo] = useState(false)
-  const [player, setPlayer] = useState(null)
+  const [currentProject, setCurrentProject] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState("right");
+  const [particles, setParticles] = useState([]);
+  const [fullscreenVideo, setFullscreenVideo] = useState(false);
+  const [player, setPlayer] = useState(null);
 
   useEffect(() => {
     setParticles(
-      Array(20).fill().map(() => ({
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animationDelay: `${Math.random() * 3}s`,
-        animationDuration: `${2 + Math.random() * 2}s`,
-      }))
-    )
-  }, [])
+      Array(20)
+        .fill()
+        .map(() => ({
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${Math.random() * 3}s`,
+          animationDuration: `${2 + Math.random() * 2}s`,
+        }))
+    );
+  }, []);
 
   const nextProject = () => {
-    setAnimationDirection("right")
-    setCurrentProject((prev) => (prev + 1) % projects.length)
-    setIsPlaying(false)
-  }
+    setAnimationDirection("right");
+    setCurrentProject((prev) => (prev + 1) % projects.length);
+    setIsPlaying(false);
+  };
 
   const prevProject = () => {
-    setAnimationDirection("left")
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length)
-    setIsPlaying(false)
-  }
+    setAnimationDirection("left");
+    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
+    setIsPlaying(false);
+  };
 
   const goToProject = (index) => {
-    setAnimationDirection(index > currentProject ? "right" : "left")
-    setCurrentProject(index)
-    setIsPlaying(false)
-  }
+    setAnimationDirection(index > currentProject ? "right" : "left");
+    setCurrentProject(index);
+    setIsPlaying(false);
+  };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isPlaying) {
-        nextProject()
-      }
-    }, 8000)
-
-    return () => clearInterval(interval)
-  }, [isPlaying])
-
-  const project = projects[currentProject]
+  const project = projects[currentProject];
 
   const onPlayerReady = (event) => {
-    setPlayer(event.target)
-  }
+    setPlayer(event.target);
+  };
 
   const opts = {
-    height: '500',
-    width: '100%',
+    height: "500",
+    width: "100%",
     playerVars: {
       autoplay: 1,
       controls: 1,
@@ -92,18 +83,26 @@ export default function ProjectsCarousel() {
       rel: 0,
       showinfo: 0,
     },
-  }
+  };
 
   const toggleFullscreen = () => {
-    setFullscreenVideo(!fullscreenVideo)
+    setFullscreenVideo(!fullscreenVideo);
     if (player) {
       if (!fullscreenVideo) {
-        player.playVideo()
+        player.playVideo();
       } else {
-        player.pauseVideo()
+        player.pauseVideo();
       }
     }
-  }
+  };
+
+  // Special handling for PDF chat projects
+  const getYouTubeThumbnail = (youtubeId, isPdfProject = false) => {
+    if (isPdfProject) {
+      return `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg?t=0.2`;
+    }
+    return `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+  };
 
   return (
     <section
@@ -162,7 +161,9 @@ export default function ProjectsCarousel() {
           <div className="inline-flex items-center gap-4 bg-gray-800/50 backdrop-blur-sm border border-gray-600 rounded-full px-6 py-3">
             <span className="text-gray-300">Project</span>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-cyan-400">{currentProject + 1}</span>
+              <span className="text-2xl font-bold text-cyan-400">
+                {currentProject + 1}
+              </span>
               <span className="text-gray-400">/</span>
               <span className="text-gray-300">{projects.length}</span>
             </div>
@@ -171,7 +172,21 @@ export default function ProjectsCarousel() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto relative">
+          <button
+            onClick={prevProject}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-20 p-3 rounded-full bg-gray-800/80 backdrop-blur-sm border border-gray-600 hover:bg-cyan-500/20 hover:border-cyan-500/50 text-gray-300 hover:text-cyan-400 transition-all duration-300"
+          >
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+
+          <button
+            onClick={nextProject}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-20 p-3 rounded-full bg-gray-800/80 backdrop-blur-sm border border-gray-600 hover:bg-cyan-500/20 hover:border-cyan-500/50 text-gray-300 hover:text-cyan-400 transition-all duration-300"
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
+
           <Card
             className={`bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-gray-600 overflow-hidden relative group shadow-2xl transform transition-all duration-700 hover:scale-[1.02]`}
           >
@@ -185,107 +200,103 @@ export default function ProjectsCarousel() {
 
             <CardContent className="p-0 relative z-10">
               <div className="grid lg:grid-cols-2 gap-0">
-                <div className="relative group/video">
-                  <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
-                    {project.youtubeId ? (
-                      <>
-                        {isPlaying ? (
-                          <div className="w-full h-full flex justify-center items-center">
-                            <YouTube
-                              videoId={project.youtubeId}
-                              opts={opts}
-                              onReady={onPlayerReady}
-                              className="w-full h-full"
-                            />
-                            <button
-                              onClick={toggleFullscreen}
-                              className="absolute top-4 right-4 p-2 rounded-full bg-gray-900/80 text-white hover:bg-gray-800 transition-colors z-10"
-                            >
-                              <Maximize2 className="w-5 h-5" />
-                            </button>
-                          </div>
-                        ) : (
-                          <>
-                            <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900">
-                              <img
-                                src={`https://img.youtube.com/vi/${project.youtubeId}/maxresdefault.jpg`}
-                                alt="YouTube thumbnail"
-                                className="w-full h-full object-cover opacity-50"
-                              />
-                            </div>
-                            <Button
-                              size="lg"
-                              className={`bg-gradient-to-r ${project.gradient} hover:scale-110 text-white border-0 rounded-full w-20 h-20 group-hover/video:scale-125 transition-all duration-300 shadow-2xl z-10`}
-                              onClick={() => setIsPlaying(true)}
-                            >
-                              <Play className="w-8 h-8 ml-1" />
-                            </Button>
-                          </>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
-                          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;40&quot; height=&quot;40&quot; viewBox=&quot;0 0 40 40&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fillOpacity=&quot;0.1&quot;%3E%3Cpath d=&quot;M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z&quot;/%3E%3C/g%3E%3C/svg%3E')] animate-pulse"></div>
+                {project.videoAvailable ? (
+                  <div className="relative group/video">
+                    <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                      {isPlaying ? (
+                        <div className="w-full h-full flex justify-center items-center">
+                          <YouTube
+                            videoId={project.youtubeId}
+                            opts={opts}
+                            onReady={onPlayerReady}
+                            className="w-full h-full"
+                          />
+                          <button
+                            onClick={toggleFullscreen}
+                            className="absolute top-4 right-4 p-2 rounded-full bg-gray-900/80 text-white hover:bg-gray-800 transition-colors z-10"
+                          >
+                            <Maximize2 className="w-5 h-5" />
+                          </button>
                         </div>
-                        <Button
-                          size="lg"
-                          className={`bg-gradient-to-r ${project.gradient} hover:scale-110 text-white border-0 rounded-full w-20 h-20 group-hover/video:scale-125 transition-all duration-300 shadow-2xl`}
-                          onClick={() => setIsPlaying(!isPlaying)}
+                      ) : (
+                        <>
+                          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900">
+                            {project.youtubeId && (
+                              <img
+                                src={getYouTubeThumbnail(
+                                  project.youtubeId,
+                                  project.id === 3 || project.id === 10
+                                )}
+                                alt="YouTube thumbnail"
+                                className="w-full h-full object-cover opacity-70"
+                                onError={(e) => {
+                                  console.error(
+                                    `Failed to load thumbnail for YouTube ID: ${project.youtubeId}`
+                                  );
+                                  e.target.onerror = null;
+                                  e.target.src = "/placeholder-image.jpg";
+                                }}
+                              />
+                            )}
+                          </div>
+                          <Button
+                            size="lg"
+                            className={`absolute bg-gradient-to-r ${project.gradient} hover:scale-110 text-white border-0 rounded-full w-20 h-20 group-hover/video:scale-125 transition-all duration-300 shadow-2xl z-10`}
+                            onClick={() => setIsPlaying(true)}
+                          >
+                            <Play className="w-8 h-8 ml-1" />
+                          </Button>
+                        </>
+                      )}
+                      <div className="absolute inset-0 bg-black/20 group-hover/video:bg-black/10 transition-colors duration-300"></div>
+                      <div className="absolute top-4 left-4">
+                        <Badge
+                          className={`${
+                            project.status === "Live"
+                              ? "bg-green-500/20 text-green-400 border-green-500/30"
+                              : project.status === "Demo"
+                              ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
+                              : "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+                          } backdrop-blur-sm`}
                         >
-                          <Play className="w-8 h-8 ml-1" />
+                          {project.status}
+                        </Badge>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-4 right-4 flex gap-3">
+                      {project.liveUrl && (
+                        <Button
+                          size="sm"
+                          className="bg-gray-900/80 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 backdrop-blur-sm group"
+                          onClick={() => window.open(project.liveUrl, "_blank")}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2 group-hover:animate-bounce" />
+                          Live Demo
                         </Button>
-                      </>
-                    )}
-
-                    <div className="absolute inset-0 bg-black/20 group-hover/video:bg-black/10 transition-colors duration-300"></div>
-
-                    <div className="absolute top-4 left-4">
-                      <Badge
-                        className={`${project.status === "Live" ? "bg-green-500/20 text-green-400 border-green-500/30" : project.status === "Demo" ? "bg-blue-500/20 text-blue-400 border-blue-500/30" : "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"} backdrop-blur-sm`}
-                      >
-                        {project.status}
-                      </Badge>
+                      )}
+                      {project.githubUrl && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="bg-gray-900/80 border-gray-600 text-gray-300 hover:border-purple-500/50 hover:text-purple-400 backdrop-blur-sm group"
+                          onClick={() => window.open(project.githubUrl, "_blank")}
+                        >
+                          <Github className="w-4 h-4 mr-2 group-hover:animate-spin" />
+                          GitHub
+                        </Button>
+                      )}
                     </div>
                   </div>
-
-                  <div className="absolute bottom-4 right-4 flex gap-3">
-                    {project.liveUrl && (
-                      <Button
-                        size="sm"
-                        className="bg-gray-900/80 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 backdrop-blur-sm group"
-                        onClick={() => window.open(project.liveUrl, "_blank")}
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-                        Live Demo
-                      </Button>
-                    )}
-                    {project.githubUrl && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="bg-gray-900/80 border-gray-600 text-gray-300 hover:border-purple-500/50 hover:text-purple-400 backdrop-blur-sm group"
-                        onClick={() => window.open(project.githubUrl, "_blank")}
-                      >
-                        <Github className="w-4 h-4 mr-2 group-hover:animate-spin" />
-                        GitHub
-                      </Button>
-                    )}
-                    {project.youtubeId && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="bg-gray-900/80 border-red-500/50 text-red-400 hover:bg-red-500/20 backdrop-blur-sm group"
-                        onClick={() => window.open(`https://youtu.be/${project.youtubeId}`, "_blank")}
-                      >
-                        <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-                        </svg>
-                        YouTube
-                      </Button>
-                    )}
+                ) : (
+                  <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Code className="w-16 h-16 text-white opacity-50 mb-2" />
+                      <p className="text-white text-lg font-medium">
+                        Video not added yet
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="p-8 space-y-6">
                   <div className="space-y-4">
@@ -300,7 +311,10 @@ export default function ProjectsCarousel() {
                       </div>
                       <div className="flex gap-1">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                          <Star
+                            key={i}
+                            className="w-5 h-5 text-yellow-400 fill-current"
+                          />
                         ))}
                       </div>
                     </div>
@@ -315,13 +329,15 @@ export default function ProjectsCarousel() {
                     </div>
                   </div>
 
-                  <p className="text-gray-200 leading-relaxed">{project.description}</p>
+                  <p className="text-gray-200 leading-relaxed">
+                    {project.description}
+                  </p>
 
                   <div className="space-y-3">
                     <h4 className="text-white font-semibold">Key Features:</h4>
                     <div className="grid grid-cols-2 gap-3">
                       {project.features.map((feature, index) => {
-                        const IconComponent = feature.icon
+                        const IconComponent = feature.icon;
                         return (
                           <div key={index} className="flex items-center gap-3 group">
                             <div className="p-2 rounded-lg bg-gray-800/50 border border-gray-600 group-hover:border-cyan-500/50 transition-colors duration-200">
@@ -331,13 +347,15 @@ export default function ProjectsCarousel() {
                               {feature.text}
                             </span>
                           </div>
-                        )
+                        );
                       })}
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="text-white font-semibold">Technologies Used:</h4>
+                    <h4 className="text-white font-semibold">
+                      Technologies Used:
+                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <Badge
@@ -351,28 +369,44 @@ export default function ProjectsCarousel() {
                   </div>
 
                   <div className="space-y-3">
-                    <h4 className="text-white font-semibold">Project Metrics:</h4>
+                    <h4 className="text-white font-semibold">
+                      Project Metrics:
+                    </h4>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="text-gray-300">Performance</span>
-                          <span className="text-cyan-400 font-semibold">{project.metrics.performance}%</span>
+                          <span className="text-cyan-400 font-semibold">
+                            {project.metrics.performance}%
+                          </span>
                         </div>
-                        <Progress value={project.metrics.performance} className="h-2" />
+                        <Progress
+                          value={project.metrics.performance}
+                          className="h-2"
+                        />
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span className="text-gray-300">Security</span>
-                          <span className="text-green-400 font-semibold">{project.metrics.security}%</span>
+                          <span className="text-green-400 font-semibold">
+                            {project.metrics.security}%
+                          </span>
                         </div>
-                        <Progress value={project.metrics.security} className="h-2" />
+                        <Progress
+                          value={project.metrics.security}
+                          className="h-2"
+                        />
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-cyan-400">{project.metrics.users}</div>
+                        <div className="text-lg font-bold text-cyan-400">
+                          {project.metrics.users}
+                        </div>
                         <div className="text-xs text-gray-400">Active Users</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-green-400">{project.metrics.uptime}</div>
+                        <div className="text-lg font-bold text-green-400">
+                          {project.metrics.uptime}
+                        </div>
                         <div className="text-xs text-gray-400">Uptime</div>
                       </div>
                     </div>
@@ -431,19 +465,43 @@ export default function ProjectsCarousel() {
               >
                 <CardContent className="p-0">
                   <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-r ${proj.gradient} opacity-20`}></div>
-                    <div className="text-center relative z-10">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${proj.gradient} opacity-20`}
+                    ></div>
+                    <div className="text-center relative z-10 w-full h-full">
                       {proj.youtubeId ? (
                         <>
-                          <svg className="w-8 h-8 text-red-500 mx-auto mb-2" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-                          </svg>
-                          <p className="text-white text-xs font-medium">{proj.title}</p>
+                          <img
+                            src={getYouTubeThumbnail(
+                              proj.youtubeId,
+                              proj.id === 3 || proj.id === 10
+                            )}
+                            alt="YouTube thumbnail"
+                            className="w-full h-full object-cover opacity-70"
+                            onError={(e) => {
+                              console.error(
+                                `Failed to load thumbnail for YouTube ID: ${proj.youtubeId}`
+                              );
+                              e.target.onerror = null;
+                              e.target.src = "/placeholder-image.jpg";
+                            }}
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <svg
+                              className="w-12 h-12 text-red-500"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                            </svg>
+                          </div>
                         </>
                       ) : (
                         <>
                           <Code className="w-8 h-8 text-white mx-auto mb-2" />
-                          <p className="text-white text-xs font-medium">{proj.title}</p>
+                          <p className="text-white text-xs font-medium">
+                            {proj.title}
+                          </p>
                         </>
                       )}
                     </div>
@@ -455,5 +513,5 @@ export default function ProjectsCarousel() {
         </div>
       </div>
     </section>
-  )
+  );
 }
