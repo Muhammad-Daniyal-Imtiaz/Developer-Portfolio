@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Lock } from "lucide-react"
+import { Menu, X, Lock, Linkedin, Github, Twitter, Instagram, Facebook, Mail } from "lucide-react"
 
 // Button component with cn utility included
 function Button({ variant = "default", size = "default", className, children, ...props }) {
@@ -53,6 +53,14 @@ export default function Header() {
   const [loading, setLoading] = useState(false)
 
   const ADMIN_PASSWORD = "gocscs@041"; // Your admin password
+  const SOCIAL_LINKS = {
+    linkedin: "https://www.linkedin.com/in/muhammad-daniyal-imtiaz-2b3180283/",
+    github: "https://github.com/yourusername",
+    twitter: "https://twitter.com/yourusername",
+    instagram: "https://instagram.com/yourusername",
+    facebook: "https://facebook.com/yourusername",
+    email: "mailto:your.email@example.com"
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,6 +118,18 @@ export default function Header() {
     setError('')
   }
 
+  const renderSocialIcon = (platform, size = 20) => {
+    const icons = {
+      linkedin: <Linkedin size={size} />,
+      github: <Github size={size} />,
+      twitter: <Twitter size={size} />,
+      instagram: <Instagram size={size} />,
+      facebook: <Facebook size={size} />,
+      email: <Mail size={size} />
+    };
+    return icons[platform] || null;
+  };
+
   return (
     <>
       <header
@@ -119,8 +139,26 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-              Portfolio
+            <div className="flex items-center gap-4">
+              <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                Muhammad Daniyal Imtiaz
+              </div>
+              
+              {/* Social Links - Desktop */}
+              <div className="hidden md:flex items-center gap-2">
+                {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
+                  <a 
+                    key={platform}
+                    href={url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-gray-800/50 hover:bg-cyan-500/20 text-gray-300 hover:text-cyan-400 transition-all duration-300"
+                    aria-label={`${platform} profile`}
+                  >
+                    {renderSocialIcon(platform)}
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* Desktop Navigation */}
@@ -139,7 +177,7 @@ export default function Header() {
               {/* Admin Icon */}
               <button
                 onClick={() => setShowAdminModal(true)}
-                className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+                className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 p-2 rounded-full hover:bg-gray-800/50"
                 title="Admin"
               >
                 <Lock size={20} />
@@ -150,7 +188,7 @@ export default function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-cyan-400"
+              className="md:hidden text-cyan-400 hover:text-cyan-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X /> : <Menu />}
@@ -165,20 +203,37 @@ export default function Header() {
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 text-left"
+                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 text-left py-2"
                   >
                     {item}
                   </button>
                 ))}
-                <button
-                  onClick={() => {
-                    setShowAdminModal(true)
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 text-left flex items-center gap-2"
-                >
-                  <Lock size={16} /> Admin
-                </button>
+                <div className="flex flex-col gap-3 mt-4">
+                  {/* Mobile Social Links */}
+                  {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
+                    <a 
+                      key={platform}
+                      href={url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors py-2"
+                    >
+                      {renderSocialIcon(platform, 20)}
+                      <span className="capitalize">
+                        {platform === 'email' ? 'Email Me' : `${platform} Profile`}
+                      </span>
+                    </a>
+                  ))}
+                  <button
+                    onClick={() => {
+                      setShowAdminModal(true)
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors py-2"
+                  >
+                    <Lock size={16} /> Admin Panel
+                  </button>
+                </div>
               </div>
             </nav>
           )}
