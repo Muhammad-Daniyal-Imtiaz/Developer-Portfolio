@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Lock, Linkedin, Github, Twitter, Instagram, Facebook, Mail } from "lucide-react"
+import { Menu, X, Lock, Linkedin, Github, Mail, Phone } from "lucide-react"
 
 // Button component with cn utility included
 function Button({ variant = "default", size = "default", className, children, ...props }) {
@@ -53,13 +53,12 @@ export default function Header() {
   const [loading, setLoading] = useState(false)
 
   const ADMIN_PASSWORD = "gocscs@041"; // Your admin password
-  const SOCIAL_LINKS = {
+  const CONTACT_LINKS = {
+    whatsapp: "https://wa.me/923265608168",
+    phone: "tel:+923265608168",
     linkedin: "https://www.linkedin.com/in/muhammad-daniyal-imtiaz-2b3180283/",
-    github: "https://github.com/yourusername",
-    twitter: "https://twitter.com/yourusername",
-    instagram: "https://instagram.com/yourusername",
-    facebook: "https://facebook.com/yourusername",
-    email: "mailto:your.email@example.com"
+    github: "https://github.com/Muhammad-Daniyal-Imtiaz",
+    email: "mailto:daniyalimtiaz041@gmail.com"
   };
 
   useEffect(() => {
@@ -122,9 +121,8 @@ export default function Header() {
     const icons = {
       linkedin: <Linkedin size={size} />,
       github: <Github size={size} />,
-      twitter: <Twitter size={size} />,
-      instagram: <Instagram size={size} />,
-      facebook: <Facebook size={size} />,
+      whatsapp: <Phone size={size} />,
+      phone: <Phone size={size} />,
       email: <Mail size={size} />
     };
     return icons[platform] || null;
@@ -145,19 +143,49 @@ export default function Header() {
               </div>
               
               {/* Social Links - Desktop */}
-              <div className="hidden md:flex items-center gap-2">
-                {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
-                  <a 
-                    key={platform}
-                    href={url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-gray-800/50 hover:bg-cyan-500/20 text-gray-300 hover:text-cyan-400 transition-all duration-300"
-                    aria-label={`${platform} profile`}
-                  >
-                    {renderSocialIcon(platform)}
-                  </a>
-                ))}
+              <div className="hidden md:flex items-center gap-4">
+                {/* WhatsApp Number */}
+                <a 
+                  href={CONTACT_LINKS.whatsapp} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+                >
+                  923265608168
+                </a>
+                
+                {/* LinkedIn */}
+                <a 
+                  href={CONTACT_LINKS.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+                  title="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
+                
+                {/* GitHub */}
+                <a 
+                  href={CONTACT_LINKS.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+                  title="GitHub"
+                >
+                  <Github size={20} />
+                </a>
+                
+                {/* Email */}
+                <a 
+                  href={CONTACT_LINKS.email} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+                  title="Email"
+                >
+                  <Mail size={20} />
+                </a>
               </div>
             </div>
 
@@ -209,21 +237,49 @@ export default function Header() {
                   </button>
                 ))}
                 <div className="flex flex-col gap-3 mt-4">
-                  {/* Mobile Social Links */}
-                  {Object.entries(SOCIAL_LINKS).map(([platform, url]) => (
-                    <a 
-                      key={platform}
-                      href={url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors py-2"
-                    >
-                      {renderSocialIcon(platform, 20)}
-                      <span className="capitalize">
-                        {platform === 'email' ? 'Email Me' : `${platform} Profile`}
-                      </span>
-                    </a>
-                  ))}
+                  {/* WhatsApp Number - Mobile */}
+                  <a 
+                    href={CONTACT_LINKS.whatsapp}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-cyan-400 transition-colors py-2"
+                  >
+                    WhatsApp: 923265608168(only WhatsApp)
+                  </a>
+                  
+                  {/* LinkedIn - Mobile */}
+                  <a 
+                    href={CONTACT_LINKS.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors py-2"
+                  >
+                    <Linkedin size={20} />
+                    <span>LinkedIn Profile</span>
+                  </a>
+                  
+                  {/* GitHub - Mobile */}
+                  <a 
+                    href={CONTACT_LINKS.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors py-2"
+                  >
+                    <Github size={20} />
+                    <span>GitHub Profile</span>
+                  </a>
+                  
+                  {/* Email - Mobile */}
+                  <a 
+                    href={CONTACT_LINKS.email} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors py-2"
+                  >
+                    <Mail size={20} />
+                    <span>daniyalimtiaz041@gmail.com</span>
+                  </a>
+                  
                   <button
                     onClick={() => {
                       setShowAdminModal(true)

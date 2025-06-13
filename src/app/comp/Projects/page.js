@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import YouTube from "react-youtube";
 import {
   Card,
   CardContent,
@@ -27,6 +28,7 @@ import {
   Database,
   Cpu,
   Globe,
+  Play,
 } from "lucide-react";
 
 const projectFeatures = [
@@ -79,6 +81,7 @@ const projectStats = [
 export default function ProjectSection() {
   const [expandedFeatures, setExpandedFeatures] = useState([]);
   const [activeTab, setActiveTab] = useState("overview");
+  const [showVideo, setShowVideo] = useState(false);
 
   const toggleFeature = (index) => {
     setExpandedFeatures((prev) =>
@@ -86,6 +89,19 @@ export default function ProjectSection() {
         ? prev.filter((i) => i !== index)
         : [...prev, index]
     );
+  };
+
+  const videoId = "zuuFVVFkMno"; // Extracted from your YouTube URL
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+  const videoOptions = {
+    height: '100%',
+    width: '100%',
+    playerVars: {
+      autoplay: 1,
+      modestbranding: 1,
+      rel: 0,
+    },
   };
 
   return (
@@ -141,11 +157,11 @@ export default function ProjectSection() {
                 <div className="flex gap-4">
                   <Button
                     className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white group relative overflow-hidden px-6 py-3"
-                    onClick={() => window.open("#", "_blank")}
+                    onClick={() => setShowVideo(true)}
                   >
                     <span className="relative z-10 flex items-center gap-2">
-                      <ExternalLink className="w-5 h-5 group-hover:animate-bounce" />
-                      Live Demo
+                      <Play className="w-5 h-5 group-hover:animate-pulse" />
+                      Watch Demo
                     </span>
                   </Button>
                   <Button
@@ -181,17 +197,32 @@ export default function ProjectSection() {
               {/* Tab Content */}
               {activeTab === "overview" && (
                 <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Project Demo/Image */}
+                  {/* Project Demo/Video */}
                   <div className="relative group">
                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition-opacity duration-300"></div>
                     <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 group-hover:border-cyan-500/50 transition-colors duration-300">
-                      <div className="aspect-video bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-xl flex items-center justify-center mb-6 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;40&quot; height=&quot;40&quot; viewBox=&quot;0 0 40 40&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fillOpacity=&quot;0.1&quot;%3E%3Cpath d=&quot;M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z&quot;/%3E%3C/g%3E%3C/svg%3E')] animate-pulse"></div>
-                        <div className="text-center relative z-10">
-                          <Globe className="w-20 h-20 text-cyan-400 mx-auto mb-4 animate-spin-slow" />
-                          <p className="text-cyan-400 font-semibold text-lg">Live Demo Preview</p>
-                          <p className="text-gray-400">Interactive auction interface</p>
-                        </div>
+                      <div className="aspect-video rounded-xl flex items-center justify-center mb-6 relative overflow-hidden">
+                        {showVideo ? (
+                          <YouTube
+                            videoId={videoId}
+                            opts={videoOptions}
+                            className="w-full h-full"
+                            containerClassName="w-full h-full"
+                          />
+                        ) : (
+                          <>
+                            <div 
+                              className="absolute inset-0 bg-cover bg-center"
+                              style={{ backgroundImage: `url(${thumbnailUrl})` }}
+                            />
+                            <div className="absolute inset-0 bg-black/50 hover:bg-black/30 transition-colors duration-300 flex items-center justify-center cursor-pointer"
+                                 onClick={() => setShowVideo(true)}>
+                              <div className="bg-cyan-500/90 hover:bg-cyan-400 rounded-full p-4 transition-all duration-300 group-hover:scale-110">
+                                <Play className="w-10 h-10 text-white" />
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </div>
 
                       <div className="flex flex-wrap gap-3">

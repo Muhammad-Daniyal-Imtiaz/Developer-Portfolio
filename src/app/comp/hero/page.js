@@ -165,7 +165,7 @@ export default function HeroSection() {
             >
               <span className="relative z-10 flex items-center gap-2">
                 <Globe className="w-5 h-5 group-hover:animate-spin" />
-                Get In Touch
+                
               </span>
             </Button>
           </div>
