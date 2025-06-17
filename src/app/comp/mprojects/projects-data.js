@@ -47,7 +47,7 @@ export const projects = [
     youtubeId: "zuuFVVFkMno",
     videoUrl: "/placeholder.svg?height=400&width=600",
     liveUrl: "https://neon-nexus-demo.vercel.app",
-    githubUrl: "https://github.com/username/neon-nexus",
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Neonlatest",
     startDate: "Jan 2024",
     endDate: "Present",
     status: "Live",
