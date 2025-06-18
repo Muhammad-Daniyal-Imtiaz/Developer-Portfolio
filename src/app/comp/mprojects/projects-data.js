@@ -30,12 +30,12 @@ import {
   Pulse,
   MessageSquare,
   Bot,
-  CpuChip,
   Server,
   CookingPot,
   Utensils,
   ListRestart,
-  Smartphone
+  Smartphone,
+  Video
 } from "lucide-react";
 
 export const projects = [
@@ -171,6 +171,50 @@ export const projects = [
       "Hyperparameter Tuning",
       "Pipeline Creation",
       "Classification Models"
+    ]
+  },
+  {
+    id: 9,
+    title: "Video-Gen",
+    subtitle: "AI Video Generation with Stable Diffusion",
+    description: "A Python application that generates videos from text prompts using the Stable Diffusion model, optimized for GPU performance with frame processing and video export capabilities.",
+    youtubeId: "V3dTMWnvsng",
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Video-gen",
+    startDate: "Jun 2024",
+    endDate: "Jun 2024",
+    status: "Demo",
+    videoAvailable: true,
+    technologies: ["Python", "Diffusers", "Transformers", "Torch", "ModelScope", "NumPy"],
+    features: [
+      { icon: Video, text: "Text-to-Video Generation", color: "text-cyan-400" },
+      { icon: Cpu, text: "GPU Optimization", color: "text-purple-400" },
+      { icon: Database, text: "Frame Processing", color: "text-green-400" },
+      { icon: Shield, text: "Memory Efficient", color: "text-yellow-400" },
+      { icon: Code2, text: "ModelScope Integration", color: "text-red-400" },
+      { icon: Activity, text: "Real-time Debugging", color: "text-blue-400" }
+    ],
+    metrics: {
+      users: "AI Researchers",
+      uptime: "100%",
+      performance: 90,
+      security: 85,
+    },
+    gradient: "from-emerald-500 to-teal-600",
+    skills: [
+      "AI Video Generation",
+      "Stable Diffusion",
+      "GPU Optimization",
+      "Python",
+      "Frame Processing",
+      "ModelScope",
+      "Debugging",
+      "Video Export"
+    ],
+    keyAchievements: [
+      "Implemented text-to-video generation pipeline",
+      "Optimized for GPU memory efficiency",
+      "Developed frame processing and debugging tools",
+      "Integrated with ModelScope's text-to-video model"
     ]
   },
   {
