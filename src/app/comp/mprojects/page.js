@@ -30,7 +30,7 @@ export default function ProjectsCarousel() {
   const [particles, setParticles] = useState([]);
   const [fullscreenVideo, setFullscreenVideo] = useState(false);
   const [player, setPlayer] = useState(null);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false); // Default: not muted
   const [userInteracted, setUserInteracted] = useState(false);
   const videoContainerRef = useRef(null);
 
@@ -81,16 +81,7 @@ export default function ProjectsCarousel() {
 
   const onPlayerReady = (event) => {
     setPlayer(event.target);
-    if (isMuted) {
-      event.target.mute();
-    } else {
-      event.target.unMute();
-    }
-
-    if (project.id === 11) {
-      event.target.unMute();
-      setIsMuted(false);
-    }
+    // Do not force mute or unmute, let YouTube handle default audio state
   };
 
   const onPlayerStateChange = (event) => {
@@ -129,10 +120,6 @@ export default function ProjectsCarousel() {
         player.pauseVideo();
       } else {
         player.playVideo();
-        if (project.id === 11) {
-          player.unMute();
-          setIsMuted(false);
-        }
       }
     }
     setIsPlaying(!isPlaying);
