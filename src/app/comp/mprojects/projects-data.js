@@ -35,7 +35,9 @@ import {
   Utensils,
   ListRestart,
   Smartphone,
-  Video
+  Video,
+  Volume2,
+  Mic
 } from "lucide-react";
 
 export const projects = [
@@ -171,6 +173,49 @@ export const projects = [
       "Hyperparameter Tuning",
       "Pipeline Creation",
       "Classification Models"
+    ]
+  },
+  {
+    id: 11,
+    title: "AI Voice Clone",
+    subtitle: "Text-to-Speech with Bark",
+    description: "A text-to-speech application using Suno's Bark model to generate realistic voice outputs from text inputs with Python and Transformers.",
+    youtubeId: "gV8XbJXo6iE",
+    startDate: "Jun 2024",
+    endDate: "Jun 2024",
+    status: "Demo",
+    videoAvailable: true,
+    technologies: ["Python", "Transformers", "Torch", "Bark", "IPython", "Torchaudio"],
+    features: [
+      { icon: Volume2, text: "Text-to-Speech Conversion", color: "text-cyan-400" },
+      { icon: Mic, text: "Natural Voice Generation", color: "text-purple-400" },
+      { icon: Cpu, text: "Local Processing", color: "text-green-400" },
+      { icon: Code2, text: "Open-Source Model", color: "text-yellow-400" },
+      { icon: Shield, text: "Privacy Focused", color: "text-red-400" },
+      { icon: Activity, text: "Real-time Playback", color: "text-blue-400" }
+    ],
+    metrics: {
+      users: "Developers",
+      uptime: "100%",
+      performance: 90,
+      security: 95,
+    },
+    gradient: "from-blue-500 to-cyan-600",
+    skills: [
+      "Python",
+      "Transformers",
+      "Torch",
+      "Text-to-Speech",
+      "AI Voice Generation",
+      "Audio Processing",
+      "IPython Integration"
+    ],
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/ai-voice-clone",
+    keyAchievements: [
+      "Implemented Bark text-to-speech model",
+      "Real-time audio generation and playback",
+      "Local processing for privacy",
+      "Easy integration with Jupyter notebooks"
     ]
   },
   {
