@@ -37,7 +37,9 @@ import {
   Smartphone,
   Video,
   Volume2,
-  Mic
+  Mic,
+  MonitorPlay,
+  FileText
 } from "lucide-react";
 
 export const projects = [
@@ -480,5 +482,75 @@ export const projects = [
     ],
     liveUrl: "https://recipe-app-demo.vercel.app",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Recipe-App"
+  },
+  {
+    id: 12,
+    title: "Windows Video Player",
+    subtitle: "Electron-based Video Player for Windows",
+    description: "A video player application built with Electron for Windows, providing a seamless video playback experience with support for various video formats.",
+    youtubeId: "O2ITK35U8AQ",
+    startDate: "Aug 2023",
+    endDate: "Aug 2023",
+    status: "Live",
+    videoAvailable: true,
+    technologies: ["Electron", "JavaScript", "HTML5", "CSS3", "Node.js"],
+    features: [
+      { icon: MonitorPlay, text: "Video Playback", color: "text-cyan-400" },
+      { icon: Video, text: "Multiple Format Support", color: "text-purple-400" },
+      { icon: Smartphone, text: "User-friendly Interface", color: "text-green-400" },
+      { icon: Code2, text: "Custom Controls", color: "text-yellow-400" },
+      { icon: Globe, text: "Cross-platform Compatibility", color: "text-red-400" }
+    ],
+    metrics: {
+      users: "1000+",
+      uptime: "99.9%",
+      performance: 95,
+      security: 90,
+    },
+    gradient: "from-blue-500 to-indigo-600",
+    skills: [
+      "Electron",
+      "JavaScript",
+      "Node.js",
+      "Video Playback",
+      "User Interface Design",
+      "Cross-platform Development"
+    ],
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Windows-Video-Player-Electron"
+  },
+  {
+    id: 13,
+    title: "YouTube Video Transcription",
+    subtitle: "Automated Transcription Tool",
+    description: "A tool that automatically transcribes YouTube videos, providing accurate text transcripts for video content.",
+    youtubeId: "Je_G8ahtRxw",
+    startDate: "Jul 2023",
+    endDate: "Jul 2023",
+    status: "Live",
+    videoAvailable: true,
+    technologies: ["Python", "YouTube API", "Speech Recognition", "Flask", "JavaScript"],
+    features: [
+      { icon: FileText, text: "Automated Transcription", color: "text-cyan-400" },
+      { icon: Mic, text: "Accurate Text Conversion", color: "text-purple-400" },
+      { icon: Globe, text: "YouTube API Integration", color: "text-green-400" },
+      { icon: Code2, text: "User-friendly Interface", color: "text-yellow-400" },
+      { icon: Shield, text: "Secure Data Handling", color: "text-red-400" }
+    ],
+    metrics: {
+      users: "500+",
+      uptime: "99.8%",
+      performance: 92,
+      security: 95,
+    },
+    gradient: "from-green-500 to-teal-600",
+    skills: [
+      "Python",
+      "Speech Recognition",
+      "YouTube API",
+      "Flask",
+      "JavaScript",
+      "Data Handling"
+    ],
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/YouTube-Video-Transcription"
   }
 ];
