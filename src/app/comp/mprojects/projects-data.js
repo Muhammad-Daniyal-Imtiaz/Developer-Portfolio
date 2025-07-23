@@ -72,6 +72,45 @@ export const projects = [
     gradient: "from-cyan-500 to-purple-600",
   },
   {
+    id: 14,
+    title: "RESTify",
+    subtitle: "Windows API Testing App (like Postman)",
+    description: "A Windows desktop application for testing REST APIs, similar to Postman. RESTify allows users to send requests to online APIs (like Fake JSON Testing API) and local APIs, view all requests and responses, and manage API collections. Built with Electron and Electron Store for persistent storage.",
+    youtubeId: "hp4PeJmRnj0",
+    videoAvailable: true,
+    videoUrl: "/placeholder.svg?height=400&width=600",
+    technologies: ["Electron", "Electron Store", "JavaScript", "HTML5", "CSS3", "Node.js"],
+    features: [
+      { icon: MonitorPlay, text: "Windows Desktop App", color: "text-cyan-400" },
+      { icon: Server, text: "Test Online & Local APIs", color: "text-purple-400" },
+      { icon: Database, text: "Request/Response History", color: "text-green-400" },
+      { icon: Code2, text: "API Collection Management", color: "text-yellow-400" },
+      { icon: Shield, text: "Persistent Storage", color: "text-red-400" },
+      { icon: Globe, text: "Fake JSON API Support", color: "text-blue-400" }
+    ],
+    metrics: {
+      users: "Developers",
+      uptime: "100%",
+      performance: 95,
+      security: 95,
+    },
+    gradient: "from-gray-700 to-blue-700",
+    skills: [
+      "Electron",
+      "API Testing",
+      "Electron Store",
+      "JavaScript",
+      "Desktop App Development",
+      "Request/Response Management",
+      "API Collections"
+    ],
+    githubUrl: "https://github.com/your-username/restify", // Update with actual repo if available
+    liveUrl: "", // Not applicable for desktop app
+    startDate: "Jul 2025",
+    endDate: "Jul 2025",
+    status: "Live"
+  },
+  {
     id: 2,
     title: "Image-Gen",
     subtitle: "AI Image Generator App",
