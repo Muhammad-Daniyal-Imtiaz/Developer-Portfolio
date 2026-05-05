@@ -1,9 +1,9 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Button } from "@/components/ui/button"
 import {
   GraduationCap,
   Code,
@@ -11,399 +11,215 @@ import {
   Calendar,
   MapPin,
   TrendingUp,
-  Users,
-  Zap,
-  Target,
+  Briefcase,
+  Trophy,
   BookOpen,
   Lightbulb,
-  Trophy,
-  Plus,
-  Pencil,
-  Diamond,
-} from "lucide-react";
-
-const experiences = [
-  {
-    company: "LeadsFlow180",
-    role: "Software Developer",
-    type: "Part-time",
-    period: "Aug 2025 - Present",
-    duration: "10 mos",
-    location: "Boston, Massachusetts, United States · Remote",
-    skills: ["React.js", "JavaScript", "Next.js", "Supabase", "TypeScript", "Tailwind CSS", "API Integration", "Node.js", "WebSockets"],
-    logo: "/leadsflow_logo.png"
-  },
-  {
-    company: "CodeAlpha",
-    role: "Full-stack Developer Intern",
-    type: "Internship",
-    period: "Jun 2025 - Aug 2025",
-    duration: "3 mos",
-    location: "Remote",
-    attachment: {
-      name: "Muhammad Daniyal Imtiaz.pdf",
-      thumbnail: "/pdf_thumbnail.png"
-    },
-    logo: "/codealpha_logo.png"
-  },
-  {
-    company: "Arch Technologies",
-    role: "FULL STACK DEVELOPMENT INTERN",
-    type: "Internship",
-    period: "Jun 2025 - Aug 2025",
-    duration: "3 mos",
-    location: "Remote",
-    logo: "/archtech_logo.png"
-  }
-];
-
-const achievements = [
-  { icon: Code, label: "Full-stack Applications", value: "8+", color: "text-cyan-400" },
-  { icon: Users, label: "Open Source Contributions", value: "15+", color: "text-purple-400" },
-  { icon: TrendingUp, label: "Performance Improvement", value: "60%", color: "text-green-400" },
-  { icon: Zap, label: "Deployment Time Reduction", value: "75%", color: "text-yellow-400" },
-];
-
-const coursework = [
-  { name: "Distributed Systems", progress: 95, icon: "🌐" },
-  { name: "Artificial Intelligence", progress: 92, icon: "🤖" },
-  { name: "Database Management", progress: 90, icon: "🗄️" },
-  { name: "Software Engineering", progress: 94, icon: "⚙️" },
-  { name: "Web Technologies", progress: 96, icon: "🌍" },
-  { name: "Machine Learning", progress: 88, icon: "🧠" },
-];
+  ExternalLink,
+  CheckCircle2,
+  ChevronRight,
+  Sparkles
+} from "lucide-react"
 
 export default function ExperienceSection() {
-  return (
-    <section id="experience" className="py-20 bg-gradient-to-b from-gray-800/50 to-gray-900/50 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-cyan-500/5 via-transparent to-purple-500/5"></div>
+  const experiences = [
+    {
+      company: "LeadsFlow180",
+      role: "Software Developer",
+      duration: "Aug 2025 - Present · 10 mos",
+      location: "Boston, Massachusetts, United States · Remote",
+      type: "Part-time",
+      description: "Driving growth through innovative software solutions, specializing in automated lead generation systems and high-conversion landing pages.",
+      highlights: ["Implemented real-time data synchronization", "Optimized database queries for 40% faster performance", "Developed reusable UI component library"]
+    },
+    {
+      company: "CodeAlpha",
+      role: "Full-stack Developer Intern",
+      duration: "Jun 2025 - Aug 2025 · 3 mos",
+      location: "Remote",
+      type: "Internship",
+      description: "Contributed to full-stack development projects, focusing on responsive frontend designs and robust backend API integrations.",
+      highlights: ["Built dynamic dashboards with React", "Integrated third-party payment gateways", "Streamlined CI/CD deployment pipelines"]
+    },
+    {
+      company: "Arch Technologies",
+      role: "FULL STACK DEVELOPMENT INTERN",
+      duration: "Jun 2025 - Aug 2025 · 3 mos",
+      location: "Remote",
+      type: "Internship",
+      description: "Focused on developing scalable web applications and enhancing user experiences through modern JavaScript frameworks.",
+      highlights: ["Collaborated on microservices architecture", "Implemented automated unit testing", "Improved SEO rankings by 25% through performance tuning"]
+    },
+  ]
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-500/20 rounded-full px-6 py-3 mb-6">
-            <Trophy className="w-6 h-6 text-yellow-400 animate-bounce" />
-            <span className="text-cyan-400 font-medium">Journey & Growth</span>
+  const coursework = [
+    { name: "Distributed Systems", progress: 95, icon: "🌐" },
+    { name: "Artificial Intelligence", progress: 92, icon: "🤖" },
+    { name: "Database Management", progress: 90, icon: "🗄️" },
+    { name: "Software Engineering", progress: 94, icon: "⚙️" },
+    { name: "Web Technologies", progress: 96, icon: "🌍" },
+    { name: "Machine Learning", progress: 88, icon: "🧠" },
+  ]
+
+  const certifications = [
+    {
+      name: "Introduction to Generative AI",
+      issuer: "Google Cloud",
+      link: "https://drive.google.com/file/d/1KDyuq2pCTR7NKEx2UxcL4Qn7lwyjZiuv/view?usp=sharing"
+    },
+    {
+      name: "Front-End Development",
+      issuer: "Meta",
+      link: "https://coursera.org/share/82d4d66418ed351b6c38dd79ab2fd9bd"
+    },
+    {
+      name: "Advanced Theoretical JavaScript",
+      issuer: "codedamn",
+      link: "https://codedamn.com/certificate/verify/1d6bce6e754a4cf6db8ab82f184f32e0e2d60a9c"
+    }
+  ]
+
+  return (
+    <section id="experience" className="py-24 relative overflow-hidden">
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Resume</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Experience & Education
-          </h2>
-          <p className="text-gray-200 text-xl max-w-3xl mx-auto leading-relaxed">
-            Building expertise through academic excellence and hands-on project development with{" "}
-            <span className="text-cyan-400 font-semibold">continuous learning</span> and{" "}
-            <span className="text-purple-400 font-semibold">innovation</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">Experience & Education</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+            A track record of academic excellence combined with high-impact professional experience in software engineering.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-12">
-          <Card className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 backdrop-blur-sm border-cyan-500/30 overflow-hidden relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12">
+          
+          {/* Left Column: Experience */}
+          <div className="lg:col-span-7 space-y-12">
+            <div className="flex items-center gap-4 mb-8">
+               <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                  <Briefcase className="w-6 h-6 text-primary" />
+               </div>
+               <h3 className="text-2xl font-bold text-white">Work Experience</h3>
+            </div>
 
-            <CardHeader className="relative z-10">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-cyan-400 rounded-full blur-lg opacity-50 animate-pulse"></div>
-                  <div className="relative bg-gray-900 p-4 rounded-full border border-cyan-500/30">
-                    <GraduationCap className="w-8 h-8 text-cyan-400" />
-                  </div>
-                </div>
-                <div>
-                  <CardTitle className="text-2xl text-cyan-400 flex items-center gap-3">
-                    Education
-                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">Final Year</Badge>
-                  </CardTitle>
-                  <div className="flex items-center gap-2 text-gray-200 mt-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>2021 - 2025</span>
-                    <MapPin className="w-4 h-4 ml-4" />
-                    <span>Computer Science & Engineering</span>
-                  </div>
-                </div>
-              </div>
-            </CardHeader>
-
-            <CardContent className="relative z-10">
-              <div className="grid lg:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-4">Bachelor of Engineering - Final Year</h3>
-                  <p className="text-white mb-6 leading-relaxed">
-                    Pursuing Computer Science & Engineering with a focus on modern web technologies, distributed
-                    systems, and artificial intelligence. Maintaining excellent academic performance while building
-                    real-world projects.
-                  </p>
-
-                  <div className="space-y-4">
-                    <h4 className="font-medium text-cyan-400 mb-3 flex items-center gap-2">
-                      <BookOpen className="w-5 h-5" />
-                      Relevant Coursework:
-                    </h4>
-                    <div className="grid gap-3">
-                      {coursework.map((course) => (
-                        <div key={course.name} className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <span className="text-white font-medium text-sm flex items-center gap-2">
-                              <span className="text-lg">{course.icon}</span>
-                              {course.name}
-                            </span>
-                            <span className="text-cyan-300 text-sm font-bold">{course.progress}%</span>
-                          </div>
-                          <Progress value={course.progress} className="h-3 bg-gray-800" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-medium text-cyan-400 mb-4 flex items-center gap-2">
-                    <Lightbulb className="w-5 h-5" />
-                    Key Projects & Research:
-                  </h4>
-                  <div className="space-y-4">
-                    {[
-                      {
-                        title: "Real-time Auction Platform (Neon-Nexus)",
-                        description: "Full-stack application with WebSocket integration and AI features",
-                        tech: ["Next.js", "Supabase", "WebSockets", "AI/ML"],
-                      },
-                      {
-                        title: "AI-powered Recommendation System",
-                        description: "Machine learning model for personalized product recommendations",
-                        tech: ["Python", "TensorFlow", "API Integration"],
-                      },
-                      {
-                        title: "Distributed Database Optimization",
-                        description: "Research project on improving query performance in distributed systems",
-                        tech: ["PostgreSQL", "Node.js", "Performance Tuning"],
-                      },
-                      {
-                        title: "WebSocket-based Chat Application",
-                        description: "Real-time messaging platform with advanced features",
-                        tech: ["React", "Socket.io", "MongoDB"],
-                      },
-                    ].map((project, index) => (
-                      <Card
-                        key={index}
-                        className="bg-gray-800/80 border-gray-600 hover:border-cyan-400/60 transition-colors duration-300 group backdrop-blur-sm"
-                      >
-                        <CardContent className="p-4">
-                          <h5 className="font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-200">
-                            {project.title}
-                          </h5>
-                          <p className="text-gray-200 text-sm mb-3">{project.description}</p>
-                          <div className="flex flex-wrap gap-2">
-                            {project.tech.map((tech) => (
-                              <Badge
-                                key={tech}
-                                variant="secondary"
-                                className="bg-gray-700/80 text-gray-100 text-xs border border-gray-600"
-                              >
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-[#1b1f23] border-gray-800 backdrop-blur-sm overflow-hidden relative group">
-            <CardHeader className="flex flex-row items-center justify-between pb-6 relative z-10">
-              <CardTitle className="text-2xl font-bold text-white">Experience</CardTitle>
-              <div className="flex items-center gap-6">
-                <Plus className="w-7 h-7 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-                <Pencil className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-              </div>
-            </CardHeader>
-
-            <CardContent className="relative z-10 space-y-8">
+            <div className="relative space-y-8">
+              <div className="absolute left-[23px] top-4 bottom-4 w-px bg-white/5"></div>
+              
               {experiences.map((exp, index) => (
-                <div key={index} className="relative">
-                  {index > 0 && <div className="h-[1px] bg-gray-800 w-full mb-8" />}
-                  <div className="flex gap-4 md:gap-6">
-                    <div className="flex-shrink-0">
-                      <div className="w-14 h-14 bg-white rounded-sm overflow-hidden border border-gray-700">
-                        <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain p-1" />
+                <div key={index} className="relative pl-14 group">
+                  <div className="absolute left-0 top-1 w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center z-10 transition-all group-hover:border-primary/50 group-hover:scale-110">
+                    <span className="text-sm font-bold text-gray-500 group-hover:text-primary">{index + 1}</span>
+                  </div>
+
+                  <div className="glass rounded-[2rem] p-8 border border-white/5 transition-all duration-500 hover:border-white/10">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                      <div>
+                        <h4 className="text-xl font-bold text-white">{exp.role}</h4>
+                        <div className="flex items-center gap-2 text-primary text-sm font-medium mt-1">
+                          <span>{exp.company}</span>
+                          <span className="text-gray-700">•</span>
+                          <span className="text-gray-400">{exp.type}</span>
+                        </div>
+                      </div>
+                      <div className="text-xs text-gray-500 font-medium">
+                        <div className="flex items-center gap-2 justify-md-end">
+                           <Calendar className="w-3 h-3" />
+                           <span>{exp.duration}</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex-1 space-y-1">
-                      <h3 className="text-lg font-bold text-white leading-tight">{exp.role}</h3>
-                      <p className="text-sm text-gray-100 font-medium">{exp.company} · {exp.type}</p>
-                      <p className="text-sm text-gray-400">{exp.period} · {exp.duration}</p>
-                      <p className="text-sm text-gray-400">{exp.location}</p>
-                      
-                      {exp.skills && (
-                        <div className="flex items-center gap-2 mt-4 py-1">
-                          <Diamond className="w-4 h-4 text-gray-400" />
-                          <p className="text-sm text-gray-200">
-                            <span className="font-bold">{exp.skills[0]}, {exp.skills[1]}</span> and +{exp.skills.length - 2} skills
-                          </p>
-                        </div>
-                      )}
-
-                      {exp.attachment && (
-                        <div className="mt-4 flex items-center gap-4 p-3 bg-gray-800/30 rounded-xl border border-gray-700 w-full md:w-fit hover:bg-gray-800/50 cursor-pointer group transition-all">
-                          <div className="w-20 h-14 bg-gray-700 rounded overflow-hidden">
-                            <img src={exp.attachment.thumbnail} alt="PDF" className="w-full h-full object-cover" />
-                          </div>
-                          <span className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">
-                            {exp.attachment.name}
-                          </span>
-                        </div>
-                      )}
+                    <p className="text-gray-400 text-sm leading-relaxed mb-6">{exp.description}</p>
+                    <div className="space-y-2">
+                       {exp.highlights.map((h, i) => (
+                         <div key={i} className="flex items-start gap-3 text-xs text-gray-500">
+                            <CheckCircle2 className="w-3 h-3 text-primary shrink-0 mt-0.5" />
+                            <span>{h}</span>
+                         </div>
+                       ))}
                     </div>
                   </div>
                 </div>
               ))}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm border-green-500/30 overflow-hidden relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-emerald-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-            <CardHeader className="relative z-10">
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-green-400 rounded-full blur-lg opacity-50 animate-pulse"></div>
-                  <div className="relative bg-gray-900 p-4 rounded-full border border-green-500/30">
-                    <Award className="w-8 h-8 text-green-400" />
-                  </div>
+          {/* Right Column: Education & Certs */}
+          <div className="lg:col-span-5 space-y-12">
+            
+            {/* Education */}
+            <div className="space-y-8">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center border border-secondary/20">
+                    <GraduationCap className="w-6 h-6 text-secondary" />
                 </div>
-                <CardTitle className="text-2xl text-green-400">Achievements & Certifications</CardTitle>
+                <h3 className="text-2xl font-bold text-white">Education</h3>
               </div>
-            </CardHeader>
 
-            <CardContent className="relative z-10">
-              <div className="grid lg:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="font-medium text-white mb-6 flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-green-400" />
-                    Technical Achievements
-                  </h4>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {achievements.map((achievement, index) => {
-                      const IconComponent = achievement.icon;
-                      return (
-                        <div key={index} className="text-center group">
-                          <div className="relative inline-block mb-4">
-                            <div
-                              className={`absolute inset-0 ${achievement.color.replace("text-", "bg-").replace("-400", "-500/20")} rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300`}
-                            ></div>
-                            <div className="relative bg-gray-900 p-4 rounded-full border border-gray-700 group-hover:border-green-500/50 transition-colors duration-300">
-                              <IconComponent className={`w-6 h-6 ${achievement.color} group-hover:animate-pulse`} />
-                            </div>
-                          </div>
-                          <div className="text-2xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors duration-300">
-                            {achievement.value}
-                          </div>
-                          <div className="text-gray-200 text-sm">{achievement.label}</div>
-                        </div>
-                      );
-                    })}
+              <div className="glass rounded-[2rem] p-8 border border-white/5">
+                <div className="mb-6">
+                  <h4 className="text-lg font-bold text-white">B.E. Computer Science</h4>
+                  <div className="flex items-center gap-2 text-secondary text-sm font-medium mt-1">
+                    <span>University of Engineering</span>
+                    <span className="text-gray-700">•</span>
+                    <span className="text-gray-400">2021 - 2025</span>
                   </div>
                 </div>
-
-                <div>
-                  <h4 className="font-medium text-white mb-6 flex items-center gap-2">
-                    <a href="https://www.linkedin.com/in/muhammad-daniyal-imtiaz-2b3180283/" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:underline">
-                      <Trophy className="w-5 h-5 inline-block mr-1" />
-                      Certifications & Learning (20+ Certificates Listed on LinkedIn)
-                    </a>
-                  </h4>
-                  <div className="space-y-4">
-                    {[
-                      {
-                        name: "Introduction to Generative AI - Art of the Possible",
-                        status: "Completed",
-                        progress: 100,
-                        color: "text-orange-300",
-                        link: "https://drive.google.com/file/d/1KDyuq2pCTR7NKEx2UxcL4Qn7lwyjZiuv/view?usp=sharing"
-                      },
-                      {
-                        name: "Introduction to Front-End Development by Meta",
-                        status: "Completed",
-                        progress: 100,
-                        color: "text-blue-300",
-                        link: "https://coursera.org/share/82d4d66418ed351b6c38dd79ab2fd9bd"
-                      },
-                      {
-                        name: "Use Google to get a new Job",
-                        status: "Completed",
-                        progress: 100,
-                        color: "text-green-300",
-                        link: "https://drive.google.com/file/d/1vsXiHl93B12owBkPv4XTfj78EbX0jlyW/view?usp=sharing"
-                      },
-                      {
-                        name: "Advanced Theoretical JavaScript by codedamn",
-                        status: "Completed",
-                        progress: 100,
-                        color: "text-cyan-300",
-                        link: "https://codedamn.com/certificate/verify/1d6bce6e754a4cf6db8ab82f184f32e0e2d60a9c"
-                      },
-                    ].map((cert, index) => (
-                      <div key={index} className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          {cert.link ? (
-                            <a
-                              href={cert.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-white font-medium hover:text-green-300 transition-colors"
-                            >
-                              {cert.name}
-                            </a>
-                          ) : (
-                            <span className="text-white font-medium">{cert.name}</span>
-                          )}
-                          <Badge variant="outline" className={`border-gray-500 ${cert.color} text-sm font-medium`}>
-                            {cert.status}
-                          </Badge>
+                
+                <div className="space-y-4">
+                  <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mb-4">Core Focus Areas</p>
+                  <div className="grid grid-cols-1 gap-4">
+                    {coursework.slice(0, 4).map((course) => (
+                      <div key={course.name} className="space-y-2">
+                        <div className="flex justify-between items-center text-xs">
+                          <span className="text-gray-300 font-medium">{course.name}</span>
+                          <span className="text-secondary font-bold">{course.progress}%</span>
                         </div>
-                        <Progress value={cert.progress} className="h-3 bg-gray-800" />
-                        {cert.link && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="text-green-400 border-green-400 hover:bg-green-400 hover:text-white"
-                            onClick={() => window.open(cert.link, '_blank')}
-                          >
-                            See Certificate
-                          </Button>
-                        )}
+                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-full bg-secondary rounded-full" style={{ width: `${course.progress}%` }}></div>
+                        </div>
                       </div>
                     ))}
                   </div>
-
-                  <div className="mt-8 p-6 bg-gray-800/80 rounded-xl border border-gray-600 backdrop-blur-sm">
-                    <h5 className="font-medium text-green-300 mb-4 text-lg">Recent Accomplishments</h5>
-                    <ul className="text-gray-100 space-y-3 text-sm">
-                      <li className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                        Contributed to 15+ open-source projects on GitHub
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                        Optimized database queries for 50% performance improvement
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                        Implemented CI/CD pipelines reducing deployment time by 70%
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-                        Built responsive applications serving 10k+ monthly users
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+
+            {/* Certifications */}
+            <div className="space-y-8 pt-8">
+               <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center border border-accent/20">
+                      <Trophy className="w-6 h-6 text-accent" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Certifications</h3>
+               </div>
+
+               <div className="space-y-4">
+                  {certifications.map((cert, i) => (
+                    <a 
+                      key={i} 
+                      href={cert.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="glass block rounded-2xl p-5 border border-white/5 hover:border-accent/30 transition-all group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm font-bold text-white group-hover:text-accent transition-colors">{cert.name}</p>
+                          <p className="text-xs text-gray-500 mt-1">{cert.issuer}</p>
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-accent transition-all" />
+                      </div>
+                    </a>
+                  ))}
+               </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

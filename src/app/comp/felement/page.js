@@ -1,53 +1,17 @@
 'use client';
 
 import { Canvas } from "@react-three/fiber";
-import { Float, Text3D, OrbitControls, Environment } from "@react-three/drei";
-import { Suspense, useEffect, useState, useRef } from "react";
+import { Float, OrbitControls } from "@react-three/drei";
+import { Suspense, useEffect, useState } from "react";
 import { checkWebGLAvailability } from "@/lib/webglUtils";
 
-function FloatingIcon({ position, text, color }) {
-  const [font, setFont] = useState(null);
-  const mountedRef = useRef(false);
-
-  useEffect(() => {
-    mountedRef.current = true;
-    
-    const loadFont = async () => {
-      try {
-        const { FontLoader } = await import('three/examples/jsm/loaders/FontLoader');
-        const loader = new FontLoader();
-        loader.load('/Inter_Bold.json', (loadedFont) => {
-          if (mountedRef.current) setFont(loadedFont);
-        });
-      } catch (error) {
-        console.error('Error loading font:', error);
-      }
-    };
-
-    loadFont();
-
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
-
-  if (!font) return null;
-
+function FloatingBox({ position, color, size = 0.2 }) {
   return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={2}>
+    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
       <mesh position={position}>
-        <boxGeometry args={[0.5, 0.5, 0.5]} />
-        <meshStandardMaterial color={color} transparent opacity={0.7} />
+        <boxGeometry args={[size, size, size]} />
+        <meshStandardMaterial color={color} transparent opacity={0.1} />
       </mesh>
-      <Text3D
-        position={[position[0], position[1] - 0.8, position[2]]}
-        font={font}
-        size={0.2}
-        height={0.05}
-      >
-        {text}
-        <meshStandardMaterial color={color} />
-      </Text3D>
     </Float>
   );
 }
@@ -55,18 +19,15 @@ function FloatingIcon({ position, text, color }) {
 function Scene() {
   return (
     <>
-      <Environment preset="night" />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
+      <ambientLight intensity={0.2} />
+      <pointLight position={[10, 10, 10]} intensity={0.5} />
 
-      <FloatingIcon position={[-8, 2, -5]} text="React" color="#06b6d4" />
-      <FloatingIcon position={[8, -2, -5]} text="Next.js" color="#8b5cf6" />
-      <FloatingIcon position={[-6, -3, -3]} text="AI/ML" color="#22d3ee" />
-      <FloatingIcon position={[6, 3, -3]} text="Node.js" color="#a855f7" />
-      <FloatingIcon position={[0, 4, -8]} text="TypeScript" color="#06b6d4" />
-      <FloatingIcon position={[0, -4, -8]} text="Supabase" color="#8b5cf6" />
-
-      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+      <FloatingBox position={[-5, 2, -5]} color="#ffffff" size={0.3} />
+      <FloatingBox position={[5, -2, -5]} color="#ffffff" size={0.2} />
+      <FloatingBox position={[-3, -3, -3]} color="#ffffff" size={0.15} />
+      <FloatingBox position={[3, 3, -3]} color="#ffffff" size={0.25} />
+      
+      <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.2} />
     </>
   );
 }
@@ -81,7 +42,7 @@ export default function FloatingElements() {
   if (!webGLAvailable) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-10">
+    <div className="fixed inset-0 pointer-events-none z-10 opacity-30">
       <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
         <Suspense fallback={null}>
           <Scene />
@@ -89,4 +50,4 @@ export default function FloatingElements() {
       </Canvas>
     </div>
   );
-}
+}

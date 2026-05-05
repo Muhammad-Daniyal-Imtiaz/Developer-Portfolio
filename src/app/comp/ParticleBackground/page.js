@@ -17,7 +17,7 @@ export default  function ParticleBackground() {
 
     const particles = []
 
-    const colors = ["#06b6d4", "#8b5cf6", "#22d3ee", "#a855f7"]
+    const colors = ["#ffffff", "#94a3b8", "#cbd5e1"]
 
     // Create particles
     for (let i = 0; i < 50; i++) {
@@ -27,7 +27,7 @@ export default  function ParticleBackground() {
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         size: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.5 + 0.2,
+        opacity: Math.random() * 0.15 + 0.05,
         color: colors[Math.floor(Math.random() * colors.length)],
       })
     }
