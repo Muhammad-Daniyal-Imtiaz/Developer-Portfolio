@@ -49,7 +49,7 @@ export const projects = [
     subtitle: "Real-time Auction Platform",
     description: "A revolutionary real-time auction platform powered by AI, featuring live bidding, intelligent product recommendations, and seamless payment integration.",
     youtubeId: "zuuFVVFkMno",
-    videoUrl: "/placeholder.svg?height=400&width=600",
+    videoUrl: "https://img.youtube.com/vi/zuuFVVFkMno/maxresdefault.jpg",
     liveUrl: "https://neon-nexus-demo.vercel.app",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Neonlatest",
     startDate: "Jan 2024",
@@ -78,7 +78,7 @@ export const projects = [
     description: "A Windows desktop application for testing REST APIs, similar to Postman. RESTify allows users to send requests to online APIs (like Fake JSON Testing API) and local APIs, view all requests and responses, and manage API collections. Built with Electron and Electron Store for persistent storage.",
     youtubeId: "hp4PeJmRnj0",
     videoAvailable: true,
-    videoUrl: "/placeholder.svg?height=400&width=600",
+    videoUrl: "https://img.youtube.com/vi/hp4PeJmRnj0/maxresdefault.jpg",
     technologies: ["Electron", "Electron Store", "JavaScript", "HTML5", "CSS3", "Node.js"],
     features: [
       { icon: MonitorPlay, text: "Windows Desktop App", color: "text-cyan-400" },
@@ -104,8 +104,8 @@ export const projects = [
       "Request/Response Management",
       "API Collections"
     ],
-    githubUrl: "https://github.com/your-username/restify", // Update with actual repo if available
-    liveUrl: "", // Not applicable for desktop app
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/restify",
+    liveUrl: "",
     startDate: "Jul 2025",
     endDate: "Jul 2025",
     status: "Live"
@@ -116,7 +116,7 @@ export const projects = [
     subtitle: "AI Image Generator App",
     description: "An AI Image Generator app using Next.js that leverages advanced technologies to bring AI-generated images to life.",
     youtubeId: "YRrcWkOyxPs",
-    videoUrl: "/placeholder.svg?height=400&width=600",
+    videoUrl: "https://img.youtube.com/vi/YRrcWkOyxPs/maxresdefault.jpg",
     liveUrl: "https://image-gen-demo.vercel.app",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Image-gen",
     startDate: "7/dec/2024",
@@ -148,6 +148,7 @@ export const projects = [
     subtitle: "Interactive PDF Conversational Interface",
     description: "A Streamlit app that allows users to chat with multiple PDFs using LangChain and Google Generative AI (Gemini).",
     youtubeId: "HCHF8BneqV8",
+    videoUrl: "https://img.youtube.com/vi/HCHF8BneqV8/maxresdefault.jpg",
     liveUrl: "https://pdf-chat-app-demo.vercel.app",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/-Chat-with-multiple-pdf",
     startDate: "25/Nov/2024",
@@ -175,6 +176,7 @@ export const projects = [
     subtitle: "Runs & Winner Prediction System trained on 278 Psl Matches",
     description: "Machine learning system to predict second-innings runs and match winners using historical cricket data, developed in association with NUST.",
     youtubeId: "FW8QQd1dQ5w",
+    videoUrl: "https://img.youtube.com/vi/FW8QQd1dQ5w/maxresdefault.jpg",
     startDate: "Jan 2025",
     endDate: "Jan 2025",
     status: "Demo",
@@ -222,6 +224,7 @@ export const projects = [
     subtitle: "Text-to-Speech with Bark",
     description: "A text-to-speech application using Suno's Bark model to generate realistic voice outputs from text inputs with Python and Transformers.",
     youtubeId: "gV8XbJXo6iE",
+    videoUrl: "https://img.youtube.com/vi/gV8XbJXo6iE/maxresdefault.jpg",
     startDate: "Jun 2024",
     endDate: "Jun 2024",
     status: "Demo",
@@ -265,6 +268,7 @@ export const projects = [
     subtitle: "AI Video Generation with Stable Diffusion",
     description: "A Python application that generates videos from text prompts using the Stable Diffusion model, optimized for GPU performance with frame processing and video export capabilities.",
     youtubeId: "V3dTMWnvsng",
+    videoUrl: "https://img.youtube.com/vi/V3dTMWnvsng/maxresdefault.jpg",
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/Video-gen",
     startDate: "Jun 2024",
     endDate: "Jun 2024",
@@ -312,6 +316,7 @@ export const projects = [
     endDate: "about 2 months ago",
     status: "Live",
     videoAvailable: false,
+    videoUrl: "/placeholder.svg?height=400&width=600",
     technologies: ["Gradio", "Python", "Hugging Face Spaces", "Stable Diffusion 3.5", "Fal.ai API"],
     features: [
       { icon: Image, text: "AI Image Generation", color: "text-cyan-400" },
@@ -346,6 +351,7 @@ export const projects = [
     title: "Mammography AI",
     subtitle: "Breast Cancer Classification System",
     youtubeId: "HJj4c_CaywI",
+    videoUrl: "https://img.youtube.com/vi/HJj4c_CaywI/maxresdefault.jpg",
     description: "Deep learning system for automated breast cancer detection from mammograms using the Vindr-Mammo dataset, developed in association with NUST.",
     startDate: "5 May 2025",
     endDate: "10 May 2025",
@@ -390,8 +396,7 @@ export const projects = [
       "Clinical Workflow Integration"
     ],
     githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/MammographyAi/blob/main/Untitled6.ipynb",
-    researchPaper: "https://arxiv.org/abs/example123",
-    VideoUrl: "/placeholder.svg?height=400&width=600"
+    researchPaper: "https://arxiv.org/abs/example123"
   },
   {
     id: 10,
@@ -402,6 +407,7 @@ export const projects = [
     endDate: "10 April 2025",
     status: "Research",
     videoAvailable: false,
+    videoUrl: "/placeholder.svg?height=400&width=600",
     technologies: ["CrewAi", "python", "CrewAi-tools", "Local-llm", "ollama/llama3.2:1b"],
     features: [
       { icon: HeartPulse, text: "92% AUC Score", color: "text-cyan-400" },
@@ -452,6 +458,7 @@ export const projects = [
     endDate: "Oct 2024",
     status: "Demo",
     videoAvailable: false,
+    videoUrl: "/placeholder.svg?height=400&width=600",
     technologies: ["Streamlit", "Ollama", "LLaMA", "LiteLLM", "Python", "GitHub"],
     features: [
       { icon: MessageSquare, text: "Conversational AI", color: "text-cyan-400" },
@@ -480,7 +487,7 @@ export const projects = [
       "LLM Integration",
       "Real-time Streaming"
     ],
-    githubUrl: "https://github.com/username/llm-chatbot"
+    githubUrl: "https://github.com/Muhammad-Daniyal-Imtiaz/llm-chatbot"
   },
   {
     id: 7,
@@ -491,6 +498,7 @@ export const projects = [
     endDate: "2 Sep 2023",
     status: "Live",
     videoAvailable: true,
+    videoUrl: "https://img.youtube.com/vi/placeholder/maxresdefault.jpg", // Needs actual thumbnail if available
     technologies: ["React.js", "MealDB API", "CSS3", "JavaScript", "HTML5"],
     features: [
       { icon: CookingPot, text: "API Integration", color: "text-cyan-400" },
@@ -528,6 +536,7 @@ export const projects = [
     subtitle: "Electron-based Video Player for Windows",
     description: "A video player application built with Electron for Windows, providing a seamless video playback experience with support for various video formats.",
     youtubeId: "O2ITK35U8AQ",
+    videoUrl: "https://img.youtube.com/vi/O2ITK35U8AQ/maxresdefault.jpg",
     startDate: "Aug 2023",
     endDate: "Aug 2023",
     status: "Live",
@@ -563,6 +572,7 @@ export const projects = [
     subtitle: "Automated Transcription Tool",
     description: "A tool that automatically transcribes YouTube videos, providing accurate text transcripts for video content.",
     youtubeId: "Je_G8ahtRxw",
+    videoUrl: "https://img.youtube.com/vi/Je_G8ahtRxw/maxresdefault.jpg",
     startDate: "Jul 2023",
     endDate: "Jul 2023",
     status: "Live",
