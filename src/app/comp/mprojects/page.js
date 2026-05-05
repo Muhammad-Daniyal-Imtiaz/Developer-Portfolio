@@ -61,26 +61,42 @@ export default function ProjectsCarousel() {
                   {!showVideo ? (
                     <div className="absolute inset-0">
                       <img 
-                        src={`https://img.youtube.com/vi/${project.youtubeId}/maxresdefault.jpg`}
+                        src={project.youtubeId ? `https://img.youtube.com/vi/${project.youtubeId}/maxresdefault.jpg` : project.videoUrl}
                         className="w-full h-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105"
                         alt={project.title}
+                        onError={(e) => {
+                          e.target.src = "/placeholder.svg?height=400&width=600";
+                        }}
                       />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <button 
-                          onClick={() => setShowVideo(true)}
-                          className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all shadow-2xl"
-                        >
-                          <Play className="w-6 h-6 fill-current ml-1" />
-                        </button>
-                      </div>
+                      {project.videoAvailable && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <button 
+                            onClick={() => setShowVideo(true)}
+                            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all shadow-2xl"
+                          >
+                            <Play className="w-6 h-6 fill-current ml-1" />
+                          </button>
+                        </div>
+                      )}
                     </div>
                   ) : (
-                    <YouTube 
-                      videoId={project.youtubeId} 
-                      opts={{ height: '100%', width: '100%', playerVars: { autoplay: 1 } }}
-                      className="w-full h-full"
-                      containerClassName="w-full h-full"
-                    />
+                    <div className="w-full h-full">
+                      {project.youtubeId ? (
+                        <YouTube 
+                          videoId={project.youtubeId} 
+                          opts={{ height: '100%', width: '100%', playerVars: { autoplay: 1 } }}
+                          className="w-full h-full"
+                          containerClassName="w-full h-full"
+                        />
+                      ) : (
+                        <video 
+                          src={project.videoUrl} 
+                          controls 
+                          autoPlay 
+                          className="w-full h-full object-cover"
+                        />
+                      )}
+                    </div>
                   )}
                 </div>
               </div>
