@@ -9,7 +9,6 @@ import Header from "./comp/Header/page";
 import HeroSection from "./comp/hero/page";
 import SkillsShowcase from "./comp/skills/page";
 import ProjectSection from "./comp/Projects/page";
-import ProjectsCarousel from "./comp/mprojects/page";
 import CVSection from "./comp/cv/page";
 import ExperienceSection from "./comp/experience/page";
 import ContactSection from "./comp/contact/page";
@@ -95,7 +94,6 @@ export default function Portfolio() {
         <HeroSection />
         <SkillsShowcase />
         <ProjectSection />
-        <ProjectsCarousel />
         <CVSection onOpenChat={() => setIsChatOpen(true)} />
         <ExperienceSection />
         <ContactSection />

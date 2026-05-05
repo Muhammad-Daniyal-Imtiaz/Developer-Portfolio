@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0b;
+  --background: #050505;
   --foreground: #fafafa;
-  --primary: #6366f1;
-  --secondary: #38bdf8;
-  --accent: #f8fafc;
+  --primary: #8b5cf6;
+  --secondary: #0ea5e9;
+  --accent: #22d3ee;
 }
 
 @theme inline {
@@ -27,27 +27,32 @@ body {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #ffffff, #94a3b8);
+  background: linear-gradient(to right, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.section-padding {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
 }
 
-@media (min-width: 768px) {
-  .section-padding {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
