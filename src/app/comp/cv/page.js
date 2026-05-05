@@ -30,7 +30,7 @@ export default function CVSection({ onOpenChat }) {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">Professional Profile</h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            A comprehensive look at my technical expertise, professional journey, and the impact I've delivered across various projects.
+            A comprehensive look at my technical expertise, professional journey, and the impact I&apos;ve delivered across various projects.
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export default function CVSection({ onOpenChat }) {
             <div className="space-y-6">
               <h3 className="text-3xl font-bold text-white tracking-tight">Ready for New Opportunities</h3>
               <p className="text-gray-400 leading-relaxed">
-                I'm currently seeking roles where I can apply my Full-stack development skills and AI integration experience to solve complex business problems.
+                I&apos;m currently seeking roles where I can apply my Full-stack development skills and AI integration experience to solve complex business problems.
               </p>
             </div>
 
