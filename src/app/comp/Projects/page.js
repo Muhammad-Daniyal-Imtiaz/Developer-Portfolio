@@ -66,30 +66,11 @@ export default function ProjectSection() {
           </motion.p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex justify-center gap-4 mb-16">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setFilter(cat)
-                setPlayingInline(null)
-              }}
-              className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
-                filter === cat 
-                  ? "bg-accent text-black shadow-[0_0_20px_rgba(var(--accent-rgb),0.3)]" 
-                  : "glass border-white/10 text-gray-400 hover:text-white"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <motion.div
                 key={project.id}
                 layout
@@ -233,21 +214,6 @@ export default function ProjectSection() {
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
-                    <div className="flex gap-4">
-                      {project.liveUrl && (
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-xl glass border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
-                          <ExternalLink className="w-3 h-3" /> Live Demo
-                        </a>
-                      )}
-                    </div>
-                    <button 
-                      onClick={() => setSelectedProject(project)}
-                      className="px-4 py-2 rounded-xl glass border-white/10 text-[10px] font-bold text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all"
-                    >
-                      Case Study
-                    </button>
-                  </div>
                 </div>
               </motion.div>
             ))}
