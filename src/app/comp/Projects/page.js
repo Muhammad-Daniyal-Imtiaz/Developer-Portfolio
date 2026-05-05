@@ -19,20 +19,9 @@ import {
   CheckCircle2
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { projects } from "../mprojects/projects-data"
 
-const mainProject = {
-  title: "Neon-Nexus",
-  subtitle: "Real-time AI Auction Ecosystem",
-  description: "A high-performance bidding platform engineered for massive concurrency. Integrates real-time WebSocket communication with automated AI content moderation and a global payment infrastructure.",
-  tech: ["Next.js 15", "Supabase", "WebSockets", "Google Vision AI", "Stripe"],
-  metrics: [
-    { label: "Concurrency", value: "10k+", icon: Users },
-    { label: "Latancy", value: "<40ms", icon: Zap },
-    { label: "Accuracy", value: "99.2%", icon: Shield },
-    { label: "Uptime", value: "99.9%", icon: Activity },
-  ],
-  videoId: "zuuFVVFkMno"
-}
+const mainProject = projects[0] // Use the first project as featured
 
 export default function ProjectSection() {
   const [showVideo, setShowVideo] = useState(false)
@@ -65,31 +54,46 @@ export default function ProjectSection() {
           <div className="glass rounded-[3rem] overflow-hidden border border-white/5 relative group">
             <div className="grid lg:grid-cols-2">
               
-              {/* Media Section */}
               <div className="relative aspect-video lg:aspect-auto bg-gray-900 overflow-hidden">
                 {!showVideo ? (
                   <div className="absolute inset-0 group/media">
                     <img 
-                      src={`https://img.youtube.com/vi/${mainProject.videoId}/maxresdefault.jpg`} 
+                      src={mainProject.youtubeId ? `https://img.youtube.com/vi/${mainProject.youtubeId}/maxresdefault.jpg` : mainProject.videoUrl} 
                       className="w-full h-full object-cover opacity-40 transition-transform duration-700 group-hover/media:scale-110"
                       alt={mainProject.title}
+                      onError={(e) => {
+                        e.target.src = "/placeholder.svg?height=400&width=600";
+                      }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <button 
-                        onClick={() => setShowVideo(true)}
-                        className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white shadow-2xl transition-all hover:scale-110 active:scale-95 group-hover/media:bg-primary/90"
-                      >
-                        <Play className="w-8 h-8 fill-current ml-1" />
-                      </button>
-                    </div>
+                    {mainProject.videoAvailable && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <button 
+                          onClick={() => setShowVideo(true)}
+                          className="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-white shadow-2xl transition-all hover:scale-110 active:scale-95 group-hover/media:bg-primary/90"
+                        >
+                          <Play className="w-8 h-8 fill-current ml-1" />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ) : (
-                  <YouTube
-                    videoId={mainProject.videoId}
-                    opts={videoOptions}
-                    className="w-full h-full"
-                    containerClassName="w-full h-full"
-                  />
+                  <div className="w-full h-full">
+                    {mainProject.youtubeId ? (
+                      <YouTube
+                        videoId={mainProject.youtubeId}
+                        opts={videoOptions}
+                        className="w-full h-full"
+                        containerClassName="w-full h-full"
+                      />
+                    ) : (
+                      <video 
+                        src={mainProject.videoUrl} 
+                        controls 
+                        autoPlay 
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
                 )}
               </div>
 
@@ -104,7 +108,7 @@ export default function ProjectSection() {
                   <p className="text-gray-400 leading-relaxed text-lg mb-8">{mainProject.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-10">
-                    {mainProject.tech.map(t => (
+                    {mainProject.technologies.map(t => (
                       <span key={t} className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                         {t}
                       </span>
@@ -128,10 +132,10 @@ export default function ProjectSection() {
 
             {/* Metrics Footer */}
             <div className="border-t border-white/5 bg-white/[0.02] grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
-              {mainProject.metrics.map((m, i) => (
+              {Object.entries(mainProject.metrics).map(([key, value], i) => (
                 <div key={i} className="p-6 md:p-8 text-center group/metric">
-                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2 group-hover/metric:text-accent transition-colors">{m.label}</p>
-                  <p className="text-2xl font-bold text-white">{m.value}</p>
+                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-2 group-hover/metric:text-accent transition-colors">{key}</p>
+                  <p className="text-2xl font-bold text-white">{value}</p>
                 </div>
               ))}
             </div>
@@ -158,4 +162,4 @@ export default function ProjectSection() {
       </div>
     </section>
   )
-}
+}
