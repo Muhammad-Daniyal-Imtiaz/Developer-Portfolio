@@ -49,7 +49,7 @@ export default function ContactPage() {
   return (
     <section id="contact" className="py-32 relative">
       <div className="container mx-auto px-6">
-        
+
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
@@ -63,7 +63,7 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12">
-          
+
           {/* Info Side */}
           <div className="lg:col-span-5 space-y-8">
             <div className="glass rounded-[2.5rem] p-10 border border-white/5 space-y-10">
@@ -74,9 +74,9 @@ export default function ContactPage() {
 
               <div className="space-y-6">
                 {[
-                  { icon: Mail, label: "Email", value: "daniyalimtiaz2002@gmail.com" },
-                  { icon: Phone, label: "Phone", value: "+92 316 4615306" },
-                  { icon: MapPin, label: "Location", value: "Lahore, Pakistan (Remote Worldwide)" }
+                  { icon: Mail, label: "Email", value: "daniyalimtiaz041@gmail.com" },
+                  { icon: Phone, label: "Phone", value: "+923229505771" },
+                  { icon: MapPin, label: "Location", value: "Islamabad, Pakistan (Remote Worldwide)" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-6 group">
                     <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:border-primary/30 transition-all">
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Subject</label>
                   <input
