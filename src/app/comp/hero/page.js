@@ -186,6 +186,9 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 relative z-10 pointer-events-none">
         <motion.div 
           style={{ rotateX, rotateY, perspective: 1000 }}
+          initial={{ opacity: 0, scale: 0.5, rotateY: 90, z: -500 }}
+          animate={{ opacity: 1, scale: 1, rotateY: 0, z: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           className="max-w-4xl mx-auto flex flex-col items-center text-center"
         >
           
@@ -244,22 +247,51 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8 }}
-            className="mt-40 grid grid-cols-2 md:grid-cols-4 gap-8 w-full pointer-events-auto"
+            className="mt-40 w-full pointer-events-auto"
           >
-            {[
-              { label: "Core Speed", value: "99.9%", icon: Cpu },
-              { label: "Uptime", value: "100%", icon: Terminal },
-              { label: "Shield", value: "Level 4", icon: Code2 },
-              { label: "Growth", value: "Infinite", icon: Sparkles },
-            ].map((m, i) => (
-              <div key={i} className="p-10 rounded-[3rem] glass border border-white/5 flex flex-col items-center justify-center group hover:bg-white/5 transition-all hover:-translate-y-4 shadow-2xl">
-                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-all">
-                  <m.icon className="w-6 h-6 text-accent/50 group-hover:text-accent transition-colors" />
-                </div>
-                <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] mb-2">{m.label}</span>
-                <span className="text-2xl font-black text-white">{m.value}</span>
-              </div>
-            ))}
+            <div className="text-center mb-8">
+              <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.5em]">Select Destination Sector</span>
+            </div>
+            
+            <div className="flex overflow-x-auto pb-8 gap-6 custom-scrollbar snap-x snap-mandatory px-4 md:px-0 md:justify-center">
+              {[
+                { id: "experience", label: "Experience", desc: "Professional Journey", icon: Terminal, color: "from-blue-500/20" },
+                { id: "skills", label: "Skills", desc: "Technical Arsenal", icon: Code2, color: "from-purple-500/20" },
+                { id: "projects", label: "Projects", desc: "System Deployments", icon: Cpu, color: "from-cyan-500/20" },
+                { id: "contact", label: "Contact", desc: "Comm Channel", icon: Sparkles, color: "from-emerald-500/20" },
+              ].map((m, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => {
+                    const duration = Math.floor(Math.random() * 5000) + 5000;
+                    window.dispatchEvent(new CustomEvent('warp-travel', {
+                      detail: { duration, destination: m.label.toUpperCase() + ' SECTOR' }
+                    }));
+                    setTimeout(() => {
+                      const element = document.getElementById(m.id);
+                      if (element) {
+                        const offset = 100;
+                        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
+                      }
+                    }, duration);
+                  }}
+                  className="flex-shrink-0 snap-center w-[280px] p-8 rounded-[3rem] glass border border-white/5 flex flex-col items-center justify-center group hover:bg-white/10 transition-all hover:-translate-y-4 hover:border-accent/30 shadow-2xl relative overflow-hidden"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-t ${m.color} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  
+                  <div className="w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] transition-all z-10 relative">
+                    <m.icon className="w-8 h-8 text-gray-400 group-hover:text-accent transition-colors" />
+                  </div>
+                  
+                  <span className="text-2xl font-black text-white z-10 relative mb-2">{m.label}</span>
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] z-10 relative text-center">{m.desc}</span>
+                  
+                  {/* Wheel Decoration */}
+                  <div className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full border border-white/5 group-hover:border-accent/20 transition-all group-hover:scale-150"></div>
+                </button>
+              ))}
+            </div>
           </motion.div>
 
         </motion.div>

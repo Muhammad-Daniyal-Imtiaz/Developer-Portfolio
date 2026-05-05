@@ -28,13 +28,28 @@ export default function Header() {
   }, [])
 
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
-    }
-    setIsMobileMenuOpen(false)
+    // Generate random travel time between 5s and 10s
+    const duration = Math.floor(Math.random() * 5000) + 5000;
+    
+    // Trigger warp travel effect with destination and duration
+    window.dispatchEvent(new CustomEvent('warp-travel', {
+      detail: {
+        duration,
+        destination: sectionId.toUpperCase() + ' SECTOR'
+      }
+    }));
+
+    setIsMobileMenuOpen(false);
+
+    // Delay the scroll until the spaceship arrives
+    setTimeout(() => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const offset = 100;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
+      }
+    }, duration);
   }
 
   const handleAdminLogin = (e) => {

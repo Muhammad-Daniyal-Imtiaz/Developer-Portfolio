@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Send, X } from 'lucide-react';
-import ParticleBackground from "./comp/ParticleBackground/page";
 import Header from "./comp/Header/page";
 import HeroSection from "./comp/hero/page";
 import SkillsShowcase from "./comp/skills/page";
@@ -12,14 +11,8 @@ import ProjectSection from "./comp/Projects/page";
 import CVSection from "./comp/cv/page";
 import ExperienceSection from "./comp/experience/page";
 import ContactSection from "./comp/contact/page";
-
-const FloatingElements = dynamic(
-  () => import('./comp/felement/page').then(mod => mod.default),
-  { 
-    ssr: false,
-    loading: () => null
-  }
-);
+import SpaceBackground from "./comp/SpaceBackground";
+import SpaceTravelOverlay from "./comp/SpaceTravelOverlay";
 
 export default function Portfolio() {
   const [mounted, setMounted] = useState(false);
@@ -78,6 +71,18 @@ export default function Portfolio() {
 
   useEffect(() => scrollToBottom(), [messages]);
 
+  const [isWarping, setIsWarping] = useState(false);
+
+  useEffect(() => {
+    const handleWarp = (e) => {
+      setIsWarping(true);
+      const data = e.detail || { duration: 5000 };
+      setTimeout(() => setIsWarping(false), data.duration);
+    };
+    window.addEventListener('warp-travel', handleWarp);
+    return () => window.removeEventListener('warp-travel', handleWarp);
+  }, []);
+
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
@@ -86,11 +91,12 @@ export default function Portfolio() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
-      <ParticleBackground />
-      <FloatingElements />
+    <div className="min-h-screen bg-[#020202] text-white relative">
+      <SpaceBackground />
+      <SpaceTravelOverlay />
       <Header />
-      <main>
+      
+      <main className={`relative z-10 transition-opacity duration-700 ${isWarping ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <HeroSection />
         <ExperienceSection />
         <SkillsShowcase />
@@ -102,43 +108,43 @@ export default function Portfolio() {
       {/* Enhanced Chat Interface */}
       <AnimatePresence>
         {isChatOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" onClick={() => setIsChatOpen(false)} />
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8">
+            <motion.div 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-md" 
+              onClick={() => setIsChatOpen(false)} 
+            />
             
             <motion.div 
-              className="relative w-full max-w-4xl h-[80vh] bg-gray-800 rounded-xl shadow-2xl border border-gray-700 overflow-hidden flex flex-col"
-              layout
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-4xl h-[80vh] glass rounded-[2.5rem] border border-white/10 overflow-hidden flex flex-col shadow-2xl"
             >
-              <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-4 flex justify-between items-center">
-                <h3 className="font-bold text-white text-xl flex items-center gap-2">
+              <div className="bg-gradient-to-r from-accent to-primary p-6 flex justify-between items-center">
+                <h3 className="font-black text-black text-xl flex items-center gap-3">
                   <MessageCircle className="w-6 h-6" />
-                  CV Assistant
+                  Neural Assistant
                 </h3>
                 <button
                   onClick={() => setIsChatOpen(false)}
-                  className="text-white hover:text-gray-200 transition-colors"
+                  className="text-black/50 hover:text-black transition-colors"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-7 h-7" />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              <div className="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar bg-black/20">
                 {messages.map((message, index) => (
                   <div
                     key={index}
                     className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-2xl rounded-xl px-5 py-4 ${
+                      className={`max-w-2xl rounded-3xl px-6 py-4 ${
                         message.role === "user"
-                          ? "bg-blue-600 text-white rounded-br-none"
-                          : "bg-gray-700 text-gray-200 rounded-bl-none"
+                          ? "bg-accent text-black font-bold rounded-br-none"
+                          : "glass border border-white/5 text-gray-200 rounded-bl-none"
                       }`}
                     >
                       <div className="prose prose-invert max-w-none">
@@ -153,45 +159,40 @@ export default function Portfolio() {
                 ))}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-gray-700 text-gray-200 rounded-xl px-5 py-3 rounded-bl-none">
+                    <div className="glass border border-white/5 rounded-2xl px-6 py-4 rounded-bl-none">
                       <div className="flex space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-gray-400 animate-bounce"></div>
-                        <div className="w-3 h-3 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                        <div className="w-3 h-3 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                        <div className="w-2 h-2 rounded-full bg-accent animate-bounce"></div>
+                        <div className="w-2 h-2 rounded-full bg-accent animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                        <div className="w-2 h-2 rounded-full bg-accent animate-bounce" style={{ animationDelay: "0.4s" }}></div>
                       </div>
                     </div>
-                  </div>
-                )}
-                {error && (
-                  <div className="text-red-400 text-sm p-3 bg-red-900/30 rounded-lg">
-                    {error}
                   </div>
                 )}
                 <div ref={messagesEndRef} />
               </div>
 
-              <div className="p-4 border-t border-gray-700 bg-gray-900">
-                <div className="flex gap-3">
+              <div className="p-6 border-t border-white/5 bg-black/40">
+                <div className="flex gap-4">
                   <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                    placeholder="Ask about my CV..."
-                    className="flex-1 bg-gray-800 text-white border border-gray-700 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg"
+                    placeholder="Ask about my systems..."
+                    className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent/50 text-white text-lg transition-all"
                     disabled={isLoading}
                   />
                   <button
                     onClick={handleSendMessage}
                     disabled={isLoading || !inputValue.trim()}
-                    className="bg-purple-600 hover:bg-purple-700 text-white rounded-xl p-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-accent hover:scale-105 text-black rounded-2xl px-6 py-4 transition-all disabled:opacity-50 font-black uppercase tracking-widest text-sm"
                   >
                     <Send className="w-6 h-6" />
                   </button>
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
