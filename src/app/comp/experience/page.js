@@ -1,184 +1,200 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Button } from "@/components/ui/button"
-import {
-  GraduationCap,
-  Code,
-  Award,
-  Calendar,
-  MapPin,
-  TrendingUp,
-  Briefcase,
-  Trophy,
-  BookOpen,
-  Lightbulb,
-  ExternalLink,
-  CheckCircle2,
-  ChevronRight,
-  Sparkles
+import { motion } from "framer-motion"
+import { 
+  Briefcase, 
+  GraduationCap, 
+  Trophy, 
+  Calendar, 
+  ExternalLink, 
+  CheckCircle2, 
+  Sparkles,
+  ArrowUpRight,
+  MapPin
 } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 export default function ExperienceSection() {
   const experiences = [
     {
       company: "LeadsFlow180",
       role: "Software Developer",
-      duration: "Aug 2025 - Present · 10 mos",
-      location: "Boston, Massachusetts, United States · Remote",
+      duration: "Aug 2025 - Present",
+      location: "Boston, US (Remote)",
       type: "Part-time",
-      description: "Driving growth through innovative software solutions, specializing in automated lead generation systems and high-conversion landing pages.",
-      highlights: ["Implemented real-time data synchronization", "Optimized database queries for 40% faster performance", "Developed reusable UI component library"]
+      description: "Leading the development of high-conversion lead generation ecosystems and automated sales funnels.",
+      highlights: [
+        "Architected real-time data sync pipeline",
+        "Optimized DB latency by 40% via advanced indexing",
+        "Built a modular enterprise UI component library"
+      ],
+      color: "accent"
     },
     {
       company: "CodeAlpha",
-      role: "Full-stack Developer Intern",
-      duration: "Jun 2025 - Aug 2025 · 3 mos",
+      role: "Full-stack Intern",
+      duration: "Jun 2025 - Aug 2025",
       location: "Remote",
       type: "Internship",
-      description: "Contributed to full-stack development projects, focusing on responsive frontend designs and robust backend API integrations.",
-      highlights: ["Built dynamic dashboards with React", "Integrated third-party payment gateways", "Streamlined CI/CD deployment pipelines"]
+      description: "Developed production-ready features for core SaaS dashboards and API integrations.",
+      highlights: [
+        "Implemented secure JWT auth flows",
+        "Integrated multi-currency payment gateways",
+        "Reduced build times by 30% using Turbopack"
+      ],
+      color: "primary"
     },
     {
       company: "Arch Technologies",
-      role: "FULL STACK DEVELOPMENT INTERN",
-      duration: "Jun 2025 - Aug 2025 · 3 mos",
+      role: "Full Stack Intern",
+      duration: "Jun 2025 - Aug 2025",
       location: "Remote",
       type: "Internship",
-      description: "Focused on developing scalable web applications and enhancing user experiences through modern JavaScript frameworks.",
-      highlights: ["Collaborated on microservices architecture", "Implemented automated unit testing", "Improved SEO rankings by 25% through performance tuning"]
+      description: "Focused on modernizing legacy systems and enhancing SEO performance.",
+      highlights: [
+        "Refactored PHP monolith to Next.js microservices",
+        "Boosted SEO core web vitals by 25 points",
+        "Automated deployment via GitHub Actions"
+      ],
+      color: "secondary"
     },
-  ]
-
-  const coursework = [
-    { name: "Distributed Systems", progress: 95, icon: "🌐" },
-    { name: "Artificial Intelligence", progress: 92, icon: "🤖" },
-    { name: "Database Management", progress: 90, icon: "🗄️" },
-    { name: "Software Engineering", progress: 94, icon: "⚙️" },
-    { name: "Web Technologies", progress: 96, icon: "🌍" },
-    { name: "Machine Learning", progress: 88, icon: "🧠" },
   ]
 
   const certifications = [
     {
-      name: "Introduction to Generative AI",
+      name: "Generative AI Fundamentals",
       issuer: "Google Cloud",
       link: "https://drive.google.com/file/d/1KDyuq2pCTR7NKEx2UxcL4Qn7lwyjZiuv/view?usp=sharing"
     },
     {
-      name: "Front-End Development",
+      name: "Professional Front-End",
       issuer: "Meta",
       link: "https://coursera.org/share/82d4d66418ed351b6c38dd79ab2fd9bd"
     },
     {
-      name: "Advanced Theoretical JavaScript",
-      issuer: "codedamn",
+      name: "Theoretical JavaScript",
+      issuer: "Codedamn",
       link: "https://codedamn.com/certificate/verify/1d6bce6e754a4cf6db8ab82f184f32e0e2d60a9c"
     }
   ]
 
   return (
-    <section id="experience" className="py-24 relative overflow-hidden">
+    <section id="experience" className="py-32 relative bg-[#080808]">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      
       <div className="container mx-auto px-6">
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Resume</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">Experience & Education</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            A track record of academic excellence combined with high-impact professional experience in software engineering.
-          </p>
-        </div>
-
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12">
+        <div className="grid lg:grid-cols-12 gap-16">
           
-          {/* Left Column: Experience */}
-          <div className="lg:col-span-7 space-y-12">
-            <div className="flex items-center gap-4 mb-8">
-               <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center border border-primary/20">
-                  <Briefcase className="w-6 h-6 text-primary" />
-               </div>
-               <h3 className="text-2xl font-bold text-white">Work Experience</h3>
+          {/* Left Column: Vertical Timeline */}
+          <div className="lg:col-span-8">
+            <div className="mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
+                <Sparkles className="w-3 h-3 text-accent" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">Professional Path</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Work Experience</h2>
+              <p className="text-gray-500 max-w-xl">
+                A track record of high-impact roles where I've delivered scalable code and modern user experiences.
+              </p>
             </div>
 
-            <div className="relative space-y-8">
-              <div className="absolute left-[23px] top-4 bottom-4 w-px bg-white/5"></div>
-              
+            <div className="space-y-8 relative">
+              {/* Timeline Line */}
+              <div className="absolute left-[31px] top-8 bottom-8 w-px bg-gradient-to-b from-accent/50 via-white/5 to-transparent"></div>
+
               {experiences.map((exp, index) => (
-                <div key={index} className="relative pl-14 group">
-                  <div className="absolute left-0 top-1 w-12 h-12 rounded-2xl glass border border-white/10 flex items-center justify-center z-10 transition-all group-hover:border-primary/50 group-hover:scale-110">
-                    <span className="text-sm font-bold text-gray-500 group-hover:text-primary">{index + 1}</span>
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative pl-20 group"
+                >
+                  {/* Timeline Dot */}
+                  <div className="absolute left-0 top-2 w-16 h-16 rounded-2xl glass border border-white/10 flex items-center justify-center z-10 transition-all group-hover:border-accent/50 group-hover:scale-110 shadow-2xl">
+                    <Briefcase className={`w-6 h-6 text-${exp.color}`} />
                   </div>
 
-                  <div className="glass rounded-[2rem] p-8 border border-white/5 transition-all duration-500 hover:border-white/10">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                      <div>
-                        <h4 className="text-xl font-bold text-white">{exp.role}</h4>
-                        <div className="flex items-center gap-2 text-primary text-sm font-medium mt-1">
-                          <span>{exp.company}</span>
-                          <span className="text-gray-700">•</span>
-                          <span className="text-gray-400">{exp.type}</span>
-                        </div>
-                      </div>
-                      <div className="text-xs text-gray-500 font-medium">
-                        <div className="flex items-center gap-2 justify-md-end">
-                           <Calendar className="w-3 h-3" />
-                           <span>{exp.duration}</span>
-                        </div>
-                      </div>
+                  <div className="glass rounded-[2.5rem] p-10 border border-white/5 hover:border-white/10 transition-all duration-500 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
+                       <Briefcase size={120} />
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6">{exp.description}</p>
-                    <div className="space-y-2">
-                       {exp.highlights.map((h, i) => (
-                         <div key={i} className="flex items-start gap-3 text-xs text-gray-500">
-                            <CheckCircle2 className="w-3 h-3 text-primary shrink-0 mt-0.5" />
-                            <span>{h}</span>
-                         </div>
-                       ))}
+                    
+                    <div className="relative z-10">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                        <div>
+                          <h3 className="text-2xl font-bold text-white mb-2">{exp.role}</h3>
+                          <div className="flex flex-wrap items-center gap-4 text-sm font-medium">
+                            <span className="text-accent">{exp.company}</span>
+                            <div className="w-1 h-1 rounded-full bg-gray-700"></div>
+                            <span className="text-gray-400 flex items-center gap-1.5">
+                              <MapPin className="w-3.5 h-3.5" /> {exp.location}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">
+                          {exp.duration}
+                        </div>
+                      </div>
+
+                      <p className="text-gray-400 leading-relaxed mb-8 max-w-2xl">
+                        {exp.description}
+                      </p>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {exp.highlights.map((h, i) => (
+                          <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-white/[0.02] border border-white/5 group-hover:border-white/10 transition-all">
+                            <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                            <span className="text-xs text-gray-500 leading-relaxed">{h}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* Right Column: Education & Certs */}
-          <div className="lg:col-span-5 space-y-12">
+          <div className="lg:col-span-4 space-y-12">
             
-            {/* Education */}
-            <div className="space-y-8">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center border border-secondary/20">
-                    <GraduationCap className="w-6 h-6 text-secondary" />
-                </div>
+            {/* Education Bento Box */}
+            <div>
+              <div className="flex items-center gap-3 mb-8">
+                <GraduationCap className="w-6 h-6 text-primary" />
                 <h3 className="text-2xl font-bold text-white">Education</h3>
               </div>
 
-              <div className="glass rounded-[2rem] p-8 border border-white/5">
-                <div className="mb-6">
-                  <h4 className="text-lg font-bold text-white">B.E. Computer Science</h4>
-                  <div className="flex items-center gap-2 text-secondary text-sm font-medium mt-1">
-                    <span>University of Engineering</span>
-                    <span className="text-gray-700">•</span>
-                    <span className="text-gray-400">2021 - 2025</span>
-                  </div>
-                </div>
+              <div className="glass rounded-[2.5rem] p-10 border border-white/5 relative overflow-hidden group">
+                <div className="absolute top-[-20%] right-[-20%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[60px]"></div>
                 
-                <div className="space-y-4">
-                  <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mb-4">Core Focus Areas</p>
-                  <div className="grid grid-cols-1 gap-4">
-                    {coursework.slice(0, 4).map((course) => (
-                      <div key={course.name} className="space-y-2">
-                        <div className="flex justify-between items-center text-xs">
-                          <span className="text-gray-300 font-medium">{course.name}</span>
-                          <span className="text-secondary font-bold">{course.progress}%</span>
+                <div className="relative z-10">
+                  <Badge variant="outline" className="mb-6 rounded-lg glass border-primary/20 text-primary px-3 py-1">2021 - 2025</Badge>
+                  <h4 className="text-xl font-bold text-white mb-2">B.E. Computer Science</h4>
+                  <p className="text-gray-400 text-sm mb-8 leading-relaxed">
+                    Focused on scalable systems, deep learning architectures, and modern web engineering.
+                  </p>
+
+                  <div className="space-y-4">
+                    {[
+                      { name: "Distributed Systems", score: 95 },
+                      { name: "Artificial Intelligence", score: 92 },
+                      { name: "Software Engineering", score: 94 }
+                    ].map((item) => (
+                      <div key={item.name} className="space-y-2">
+                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                          <span>{item.name}</span>
+                          <span className="text-primary">{item.score}%</span>
                         </div>
-                        <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                          <div className="h-full bg-secondary rounded-full" style={{ width: `${course.progress}%` }}></div>
+                        <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                          <motion.div 
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${item.score}%` }}
+                            className="h-full bg-primary" 
+                          />
                         </div>
                       </div>
                     ))}
@@ -187,37 +203,39 @@ export default function ExperienceSection() {
               </div>
             </div>
 
-            {/* Certifications */}
-            <div className="space-y-8 pt-8">
-               <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center border border-accent/20">
-                      <Trophy className="w-6 h-6 text-accent" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Certifications</h3>
-               </div>
+            {/* Certifications List */}
+            <div>
+              <div className="flex items-center gap-3 mb-8">
+                <Trophy className="w-6 h-6 text-accent" />
+                <h3 className="text-2xl font-bold text-white">Certifications</h3>
+              </div>
 
-               <div className="space-y-4">
-                  {certifications.map((cert, i) => (
-                    <a 
-                      key={i} 
-                      href={cert.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="glass block rounded-2xl p-5 border border-white/5 hover:border-accent/30 transition-all group"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm font-bold text-white group-hover:text-accent transition-colors">{cert.name}</p>
-                          <p className="text-xs text-gray-500 mt-1">{cert.issuer}</p>
-                        </div>
-                        <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-accent transition-all" />
-                      </div>
-                    </a>
-                  ))}
-               </div>
+              <div className="space-y-4">
+                {certifications.map((cert, i) => (
+                  <motion.a 
+                    key={i}
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="glass flex items-center justify-between p-6 rounded-3xl border border-white/5 hover:border-accent/30 hover:bg-white/[0.02] transition-all group"
+                  >
+                    <div>
+                      <p className="text-sm font-bold text-white mb-1 group-hover:text-accent transition-colors">{cert.name}</p>
+                      <p className="text-[10px] text-gray-500 font-medium uppercase tracking-widest">{cert.issuer}</p>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl glass border border-white/10 flex items-center justify-center text-gray-600 group-hover:text-accent group-hover:border-accent/20 transition-all">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
             </div>
 
           </div>
+
         </div>
       </div>
     </section>

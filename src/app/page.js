@@ -92,10 +92,10 @@ export default function Portfolio() {
       <Header />
       <main>
         <HeroSection />
+        <ExperienceSection />
         <SkillsShowcase />
         <ProjectSection />
         <CVSection onOpenChat={() => setIsChatOpen(true)} />
-        <ExperienceSection />
         <ContactSection />
       </main>
 
