@@ -14,7 +14,11 @@ export async function GET(request) {
   }
 
   try {
+    if (!supabase) {
+      throw new Error('Supabase client is not initialized. Please check your environment variables.');
+    }
     const { data, error } = await supabase
+
       .from('contact_submissions')
       .select('*')
       .order('created_at', { ascending: false });
