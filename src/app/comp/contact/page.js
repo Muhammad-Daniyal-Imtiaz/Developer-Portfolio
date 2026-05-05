@@ -58,7 +58,7 @@ export default function ContactPage() {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">Let's Connect</h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            Interested in working together or have a question? I'm always open to discussing new projects and opportunities.
+            Interested in working together or have a question? I&apos;m always open to discussing new projects and opportunities.
           </p>
         </div>
 
