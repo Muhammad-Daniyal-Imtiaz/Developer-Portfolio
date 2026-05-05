@@ -32,7 +32,11 @@ export async function POST(request) {
     }
 
     // Insert into Supabase
+    if (!supabase) {
+      throw new Error('Supabase client is not initialized. Please check your environment variables.');
+    }
     const { data, error } = await supabase
+
       .from('contact_submissions')
       .insert([{ 
         name, 
