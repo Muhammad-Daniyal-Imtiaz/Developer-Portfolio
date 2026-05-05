@@ -1,10 +1,21 @@
 "use client"
 
-import { useState, useEffect, useRef, Suspense } from "react"
+import { useState, useEffect, useRef, Suspense, useMemo } from "react"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { Canvas, useFrame } from "@react-three/fiber"
-import { Float, Sphere, MeshDistortMaterial, MeshWobbleMaterial, OrbitControls } from "@react-three/drei"
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
+import { 
+  Float, 
+  Sphere, 
+  MeshDistortMaterial, 
+  MeshWobbleMaterial, 
+  OrbitControls, 
+  Points, 
+  PointMaterial,
+  Icosahedron,
+  Box
+} from "@react-three/drei"
+import * as THREE from "three"
 import { 
   ArrowRight, 
   Github, 
@@ -16,41 +27,108 @@ import {
   Code2
 } from "lucide-react"
 
+function Particles({ count = 2000 }) {
+  const points = useMemo(() => {
+    const p = new Float32Array(count * 3)
+    for (let i = 0; i < count; i++) {
+      p[i * 3] = (Math.random() - 0.5) * 20
+      p[i * 3 + 1] = (Math.random() - 0.5) * 20
+      p[i * 3 + 2] = (Math.random() - 0.5) * 20
+    }
+    return p
+  }, [count])
+
+  const ref = useRef()
+  useFrame((state) => {
+    ref.current.rotation.x = state.clock.getElapsedTime() * 0.05
+    ref.current.rotation.y = state.clock.getElapsedTime() * 0.03
+  })
+
+  return (
+    <points ref={ref}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={points.length / 3}
+          array={points}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <PointMaterial
+        transparent
+        color="#22d3ee"
+        size={0.03}
+        sizeAttenuation={true}
+        depthWrite={false}
+        opacity={0.4}
+      />
+    </points>
+  )
+}
+
 function Scene() {
+  const meshRef = useRef()
+  const boxRef = useRef()
+
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime()
+    if (meshRef.current) {
+      meshRef.current.rotation.x = Math.cos(t / 4) / 8
+      meshRef.current.rotation.y = Math.sin(t / 4) / 8
+      meshRef.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+    }
+    if (boxRef.current) {
+      boxRef.current.rotation.x += 0.01
+      boxRef.current.rotation.y += 0.01
+    }
+  })
+
   return (
     <>
-      <ambientLight intensity={1} />
-      <directionalLight position={[10, 10, 5]} intensity={2} />
-      <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={3} color="#8b5cf6" />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={1.5} color="#22d3ee" />
+      <pointLight position={[-10, -10, -10]} intensity={1} color="#8b5cf6" />
+      <spotLight position={[0, 5, 10]} angle={0.3} penumbra={1} intensity={2} castShadow />
       
-      <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-        <Sphere args={[1, 100, 100]} position={[2.5, 0, 0]}>
+      <Particles />
+
+      <Float speed={2} rotationIntensity={1} floatIntensity={2}>
+        <Icosahedron args={[1, 15]} position={[4, 1, -2]}>
           <MeshDistortMaterial
             color="#22d3ee"
             attach="material"
-            distort={0.4}
+            distort={0.3}
             speed={4}
             roughness={0}
             metalness={1}
+            emissive="#22d3ee"
+            emissiveIntensity={0.2}
           />
-        </Sphere>
+        </Icosahedron>
       </Float>
 
       <Float speed={3} rotationIntensity={2} floatIntensity={1.5}>
-        <Sphere args={[0.6, 100, 100]} position={[-3, 1, -2]}>
+        <Sphere args={[0.8, 100, 100]} position={[-5, -1, -3]}>
           <MeshWobbleMaterial
             color="#8b5cf6"
             attach="material"
-            factor={0.5}
+            factor={0.4}
             speed={3}
             roughness={0.1}
+            metalness={0.8}
           />
         </Sphere>
       </Float>
 
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4, 0]}>
+      <Float speed={1.5} rotationIntensity={3} floatIntensity={1}>
+        <Box args={[0.5, 0.5, 0.5]} position={[2, -2, 1]}>
+          <meshStandardMaterial color="#ffffff" wireframe />
+        </Box>
+      </Float>
+
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -5, 0]} receiveShadow>
         <planeGeometry args={[100, 100]} />
-        <meshStandardMaterial color="#050505" opacity={0.5} transparent />
+        <meshStandardMaterial color="#050505" opacity={0.3} transparent />
       </mesh>
     </>
   )
@@ -58,63 +136,91 @@ function Scene() {
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false)
+  
+  // 3D Tilt Effect Values
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  
+  const rotateX = useSpring(useTransform(y, [-300, 300], [10, -10]), { stiffness: 100, damping: 30 })
+  const rotateY = useSpring(useTransform(x, [-300, 300], [-10, 10]), { stiffness: 100, damping: 30 })
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  function handleMouseMove(event) {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    x.set(event.clientX - centerX)
+    y.set(event.clientY - centerY)
+  }
+
+  function handleMouseLeave() {
+    x.set(0)
+    y.set(0)
+  }
+
   if (!mounted) return null
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-32 pb-20 overflow-hidden bg-[#050505]">
-      {/* 3D Background Canvas */}
+    <section 
+      id="home" 
+      className="min-h-screen flex items-center justify-center relative pt-32 pb-20 overflow-hidden bg-[#050505]"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Enhanced 3D Background Canvas */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+        <Canvas camera={{ position: [0, 0, 8], fov: 60 }} shadows>
           <Suspense fallback={null}>
             <Scene />
-            <OrbitControls enableZoom={false} enablePan={false} />
+            <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
           </Suspense>
         </Canvas>
       </div>
 
-      {/* Decorative Overlay */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505] pointer-events-none"></div>
+      {/* Atmospheric Fog Overlay */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#050505]/20 via-transparent to-[#050505] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10 pointer-events-none">
-        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+        <motion.div 
+          style={{ rotateX, rotateY, perspective: 1000 }}
+          className="max-w-4xl mx-auto flex flex-col items-center text-center"
+        >
           
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-center pointer-events-auto"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 mb-12 mt-12">
+            <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full glass border border-white/10 mb-12 mt-12 shadow-[0_0_30px_rgba(34,211,238,0.1)]">
               <Sparkles className="w-4 h-4 text-accent animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300">Available for Innovation</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-300 whitespace-nowrap">Neural Systems Architect</span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-12 leading-[0.9]">
-              <span className="block text-white">Architecting</span>
-              <span className="text-gradient block">The Future.</span>
+            <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-tighter mb-12 leading-[0.8] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              <span className="block text-white">Future</span>
+              <span className="text-gradient block">Built.</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-16 font-medium">
-              High-concurrency ecosystems and AI-driven platforms built with 
-              <span className="text-white font-black"> modern engineering excellence</span>.
+            <p className="text-xl md:text-3xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-16 font-medium">
+              Engineering high-concurrency 
+              <span className="text-white font-black"> AI ecosystems</span> with architectural precision.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-10 items-center justify-center">
               <Button
                 size="lg"
-                className="rounded-2xl px-12 h-20 text-lg font-black uppercase tracking-widest bg-accent text-black hover:bg-accent/90 transition-all hover:scale-105 shadow-[0_0_50px_rgba(34,211,238,0.4)] active:scale-95"
+                className="rounded-[2rem] px-14 h-24 text-xl font-black uppercase tracking-[0.2em] bg-accent text-black hover:bg-accent/90 transition-all hover:scale-105 shadow-[0_0_70px_rgba(34,211,238,0.5)] active:scale-95"
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
               >
-                Launch Projects
-                <ArrowRight className="ml-3 w-6 h-6" />
+                Launch
+                <ArrowRight className="ml-4 w-7 h-7" />
               </Button>
 
-              <div className="flex items-center gap-4 p-2 glass rounded-[2rem] border border-white/5">
+              <div className="flex items-center gap-4 p-3 glass rounded-[2.5rem] border border-white/5">
                 {[
                   { icon: Github, href: "https://github.com/Muhammad-Daniyal-Imtiaz" },
                   { icon: Linkedin, href: "https://linkedin.com/in/muhammad-daniyal-imtiaz" },
@@ -125,9 +231,9 @@ export default function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-16 h-16 rounded-2xl glass border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-accent/30 hover:bg-accent/5 transition-all hover:-translate-y-1"
+                    className="w-16 h-16 rounded-2xl glass border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-accent/50 hover:bg-accent/10 transition-all hover:-translate-y-2 hover:scale-110"
                   >
-                    <social.icon className="w-7 h-7" />
+                    <social.icon className="w-8 h-8" />
                   </a>
                 ))}
               </div>
@@ -135,26 +241,28 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 w-full pointer-events-auto"
+            transition={{ duration: 1.2, delay: 0.8 }}
+            className="mt-40 grid grid-cols-2 md:grid-cols-4 gap-8 w-full pointer-events-auto"
           >
             {[
-              { label: "Performance", value: "99.9%", icon: Cpu },
+              { label: "Core Speed", value: "99.9%", icon: Cpu },
               { label: "Uptime", value: "100%", icon: Terminal },
-              { label: "Security", value: "Elite", icon: Code2 },
-              { label: "Delivery", value: "Rapid", icon: Sparkles },
+              { label: "Shield", value: "Level 4", icon: Code2 },
+              { label: "Growth", value: "Infinite", icon: Sparkles },
             ].map((m, i) => (
-              <div key={i} className="p-8 rounded-[2.5rem] glass border border-white/5 flex flex-col items-center justify-center group hover:bg-white/5 transition-all">
-                <m.icon className="w-5 h-5 text-accent/50 mb-3 group-hover:text-accent transition-colors" />
-                <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">{m.label}</span>
-                <span className="text-xl font-black text-white">{m.value}</span>
+              <div key={i} className="p-10 rounded-[3rem] glass border border-white/5 flex flex-col items-center justify-center group hover:bg-white/5 transition-all hover:-translate-y-4 shadow-2xl">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-all">
+                  <m.icon className="w-6 h-6 text-accent/50 group-hover:text-accent transition-colors" />
+                </div>
+                <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] mb-2">{m.label}</span>
+                <span className="text-2xl font-black text-white">{m.value}</span>
               </div>
             ))}
           </motion.div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   )
