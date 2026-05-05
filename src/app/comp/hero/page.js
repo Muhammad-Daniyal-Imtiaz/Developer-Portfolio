@@ -1,18 +1,60 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { Canvas, useFrame } from "@react-three/fiber"
+import { Float, Sphere, MeshDistortMaterial, MeshWobbleMaterial, OrbitControls } from "@react-three/drei"
 import { 
   ArrowRight, 
   Github, 
   Linkedin, 
   Twitter, 
   Sparkles,
-  Code2,
+  Cpu,
   Terminal,
-  Cpu
+  Code2
 } from "lucide-react"
+
+function Scene() {
+  return (
+    <>
+      <ambientLight intensity={1} />
+      <directionalLight position={[10, 10, 5]} intensity={2} />
+      <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={3} color="#8b5cf6" />
+      
+      <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
+        <Sphere args={[1, 100, 100]} position={[2.5, 0, 0]}>
+          <MeshDistortMaterial
+            color="#22d3ee"
+            attach="material"
+            distort={0.4}
+            speed={4}
+            roughness={0}
+            metalness={1}
+          />
+        </Sphere>
+      </Float>
+
+      <Float speed={3} rotationIntensity={2} floatIntensity={1.5}>
+        <Sphere args={[0.6, 100, 100]} position={[-3, 1, -2]}>
+          <MeshWobbleMaterial
+            color="#8b5cf6"
+            attach="material"
+            factor={0.5}
+            speed={3}
+            roughness={0.1}
+          />
+        </Sphere>
+      </Float>
+
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4, 0]}>
+        <planeGeometry args={[100, 100]} />
+        <meshStandardMaterial color="#050505" opacity={0.5} transparent />
+      </mesh>
+    </>
+  )
+}
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -25,26 +67,31 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-32 pb-20 overflow-hidden bg-[#050505]">
-      {/* Dynamic Background */}
+      {/* 3D Background Canvas */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-accent/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('/grid.svg')] opacity-[0.03]"></div>
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+          <Suspense fallback={null}>
+            <Scene />
+            <OrbitControls enableZoom={false} enablePan={false} />
+          </Suspense>
+        </Canvas>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      {/* Decorative Overlay */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505] pointer-events-none"></div>
+
+      <div className="container mx-auto px-6 relative z-10 pointer-events-none">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center pointer-events-auto"
           >
-            {/* Added more margin-top (mt-12) to create a clear gap from the floating header */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 mb-12 mt-12">
               <Sparkles className="w-4 h-4 text-accent animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300 whitespace-nowrap">Available for Innovation</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300">Available for Innovation</span>
             </div>
 
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-12 leading-[0.9]">
@@ -87,12 +134,11 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Spaced out metrics bar */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 w-full"
+            className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 w-full pointer-events-auto"
           >
             {[
               { label: "Performance", value: "99.9%", icon: Cpu },
