@@ -17,7 +17,45 @@ import {
   BookOpen,
   Lightbulb,
   Trophy,
+  Plus,
+  Pencil,
+  Diamond,
 } from "lucide-react";
+
+const experiences = [
+  {
+    company: "LeadsFlow180",
+    role: "Software Developer",
+    type: "Part-time",
+    period: "Aug 2025 - Present",
+    duration: "10 mos",
+    location: "Boston, Massachusetts, United States · Remote",
+    skills: ["React.js", "JavaScript", "Next.js", "Supabase", "TypeScript", "Tailwind CSS", "API Integration", "Node.js", "WebSockets"],
+    logo: "/leadsflow_logo.png"
+  },
+  {
+    company: "CodeAlpha",
+    role: "Full-stack Developer Intern",
+    type: "Internship",
+    period: "Jun 2025 - Aug 2025",
+    duration: "3 mos",
+    location: "Remote",
+    attachment: {
+      name: "Muhammad Daniyal Imtiaz.pdf",
+      thumbnail: "/pdf_thumbnail.png"
+    },
+    logo: "/codealpha_logo.png"
+  },
+  {
+    company: "Arch Technologies",
+    role: "FULL STACK DEVELOPMENT INTERN",
+    type: "Internship",
+    period: "Jun 2025 - Aug 2025",
+    duration: "3 mos",
+    location: "Remote",
+    logo: "/archtech_logo.png"
+  }
+];
 
 const achievements = [
   { icon: Code, label: "Full-stack Applications", value: "8+", color: "text-cyan-400" },
@@ -172,105 +210,54 @@ export default function ExperienceSection() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border-purple-500/30 overflow-hidden relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-pink-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-            <CardHeader className="relative z-10">
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-purple-400 rounded-full blur-lg opacity-50 animate-pulse"></div>
-                  <div className="relative bg-gray-900 p-4 rounded-full border border-purple-500/30">
-                    <Code className="w-8 h-8 text-purple-400" />
-                  </div>
-                </div>
-                <div>
-                  <CardTitle className="text-2xl text-purple-400">Technical Experience</CardTitle>
-                  <div className="flex items-center gap-2 text-gray-200 mt-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>2023 - Present</span>
-                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 ml-4">Active</Badge>
-                  </div>
-                </div>
+          <Card className="bg-[#1b1f23] border-gray-800 backdrop-blur-sm overflow-hidden relative group">
+            <CardHeader className="flex flex-row items-center justify-between pb-6 relative z-10">
+              <CardTitle className="text-2xl font-bold text-white">Experience</CardTitle>
+              <div className="flex items-center gap-6">
+                <Plus className="w-7 h-7 text-gray-400 hover:text-white cursor-pointer transition-colors" />
+                <Pencil className="w-6 h-6 text-gray-400 hover:text-white cursor-pointer transition-colors" />
               </div>
             </CardHeader>
 
-            <CardContent className="relative z-10">
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-3 flex items-center gap-2">
-                    <Target className="w-5 h-5 text-purple-400" />
-                    Full-Stack Developer (Personal Projects)
-                  </h3>
-                  <p className="text-gray-200 text-sm mb-6">
-                    Building innovative solutions and contributing to open-source projects
-                  </p>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-medium text-white mb-4">Key Achievements:</h4>
-                      <ul className="text-gray-100 space-y-3">
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-100">
-                            Developed Neon-Nexus, a real-time auction platform with{" "}
-                            <span className="text-cyan-300 font-semibold">1000+ concurrent users</span>
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-100">
-                            Integrated Google Vision API for automated product categorization with{" "}
-                            <span className="text-purple-300 font-semibold">92% accuracy</span>
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-100">
-                            Implemented WebSocket connections for real-time bidding functionality
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-100">
-                            Built secure payment processing with Stripe and Google Pay APIs
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-100">
-                            Deployed scalable applications on Vercel with{" "}
-                            <span className="text-pink-300 font-semibold">99.9% uptime</span>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4 className="font-medium text-white mb-4">Technology Stack:</h4>
-                      <div className="flex flex-wrap gap-3">
-                        {[
-                          "Next.js 15",
-                          "React",
-                          "TypeScript",
-                          "Supabase",
-                          "WebSockets",
-                          "AI/ML",
-                          "Stripe",
-                          "Vercel",
-                          "Tailwind CSS",
-                        ].map((tech) => (
-                          <Badge
-                            key={tech}
-                            className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30 hover:scale-110 transition-transform duration-200"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
+            <CardContent className="relative z-10 space-y-8">
+              {experiences.map((exp, index) => (
+                <div key={index} className="relative">
+                  {index > 0 && <div className="h-[1px] bg-gray-800 w-full mb-8" />}
+                  <div className="flex gap-4 md:gap-6">
+                    <div className="flex-shrink-0">
+                      <div className="w-14 h-14 bg-white rounded-sm overflow-hidden border border-gray-700">
+                        <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain p-1" />
                       </div>
+                    </div>
+                    <div className="flex-1 space-y-1">
+                      <h3 className="text-lg font-bold text-white leading-tight">{exp.role}</h3>
+                      <p className="text-sm text-gray-100 font-medium">{exp.company} · {exp.type}</p>
+                      <p className="text-sm text-gray-400">{exp.period} · {exp.duration}</p>
+                      <p className="text-sm text-gray-400">{exp.location}</p>
+                      
+                      {exp.skills && (
+                        <div className="flex items-center gap-2 mt-4 py-1">
+                          <Diamond className="w-4 h-4 text-gray-400" />
+                          <p className="text-sm text-gray-200">
+                            <span className="font-bold">{exp.skills[0]}, {exp.skills[1]}</span> and +{exp.skills.length - 2} skills
+                          </p>
+                        </div>
+                      )}
+
+                      {exp.attachment && (
+                        <div className="mt-4 flex items-center gap-4 p-3 bg-gray-800/30 rounded-xl border border-gray-700 w-full md:w-fit hover:bg-gray-800/50 cursor-pointer group transition-all">
+                          <div className="w-20 h-14 bg-gray-700 rounded overflow-hidden">
+                            <img src={exp.attachment.thumbnail} alt="PDF" className="w-full h-full object-cover" />
+                          </div>
+                          <span className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">
+                            {exp.attachment.name}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </CardContent>
           </Card>
 
