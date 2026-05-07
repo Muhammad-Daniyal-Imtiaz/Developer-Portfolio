@@ -1,21 +1,20 @@
 "use client"
 
-import { FileText, Download, Sparkles, CheckCircle2, MessageCircle, ExternalLink } from "lucide-react"
+import { FileText, Download, Sparkles, CheckCircle2, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function CVSection({ onOpenChat }) {
+export default function CVSection() {
   const handleDownload = () => {
     const link = document.createElement("a")
-    link.href = "/Muhammad_Daniyal_Imtiaz.pdf"
-    link.download = "Muhammad_Daniyal_Imtiaz_Resume.pdf"
+    link.href = "/MuhammadDaniyal_Cv.pdf"
+    link.download = "MuhammadDaniyal_Cv.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
   }
 
   const handleOpenCV = () => {
-    window.open("/Muhammad_Daniyal_Imtiaz.pdf", "_blank")
+    window.open("/MuhammadDaniyal_Cv.pdf", "_blank")
   }
 
   return (
@@ -109,15 +108,6 @@ export default function CVSection({ onOpenChat }) {
               >
                 <Download className="mr-2 w-5 h-5" />
                 Download Resume
-              </Button>
-              
-              <Button 
-                variant="outline"
-                onClick={onOpenChat}
-                className="h-16 rounded-2xl border-white/10 hover:bg-white/5 transition-all font-bold text-lg text-white"
-              >
-                <MessageCircle className="mr-2 w-5 h-5" />
-                Ask AI about my CV
               </Button>
             </div>
           </div>
