@@ -44,6 +44,33 @@ import {
 
 export const projects = [
   {
+    id: 15,
+    title: "Form Sync",
+    subtitle: "Enterprise Form Builder & Management",
+    description: "A professional-grade form builder featuring real-time synchronization, dynamic field management, and high-performance rendering for enterprise applications.",
+    videoAvailable: false,
+    videoUrl: "/form sync.png",
+    liveUrl: "https://form-builder-latest1.pages.dev/",
+    githubUrl: "",
+    startDate: "May 2025",
+    endDate: "Present",
+    status: "Live",
+    technologies: ["React", "Next.js 15", "Tailwind CSS", "Framer Motion", "Zod", "Lucide Icons"],
+    features: [
+      { icon: Layers, text: "Drag & drop management", color: "text-blue-400" },
+      { icon: Zap, text: "Real-time synchronization", color: "text-cyan-400" },
+      { icon: Shield, text: "Enterprise security", color: "text-green-400" },
+      { icon: Activity, text: "Live performance tracking", color: "text-yellow-400" },
+    ],
+    metrics: {
+      users: "Corporate",
+      uptime: "99.9%",
+      performance: 99,
+      security: 98,
+    },
+    gradient: "from-blue-600 to-cyan-500",
+  },
+  {
     id: 1,
     title: "Neon-Nexus",
     subtitle: "Real-time Auction Platform",
