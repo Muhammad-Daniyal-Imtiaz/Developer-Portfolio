@@ -78,28 +78,28 @@ export default function ProjectSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group glass rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all flex flex-col relative"
+                className="group glass rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/5 hover:border-white/20 transition-all flex flex-col relative"
               >
                 {/* Media Section */}
                 <div className="relative aspect-video bg-gray-900 overflow-hidden">
                   {/* Persistent Top Action Bar */}
-                  <div className="absolute top-4 right-4 flex gap-2 z-[30]">
+                  <div className="absolute top-3 right-3 md:top-4 md:right-4 flex gap-2 z-[30]">
                     <button 
                       onClick={() => setSelectedProject(project)}
-                      className="w-10 h-10 rounded-full glass border-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl"
+                      className="w-8 h-8 md:w-10 md:h-10 rounded-full glass border-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl"
                       title="Expand View"
                     >
-                      <Layout className="w-4 h-4" />
+                      <Layout className="w-3.5 h-3.5 md:w-4 md:h-4" />
                     </button>
                     {project.youtubeId && (
                       <a 
                         href={`https://youtube.com/watch?v=${project.youtubeId}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full glass border-white/10 text-white flex items-center justify-center hover:bg-red-600 transition-all shadow-xl"
+                        className="w-8 h-8 md:w-10 md:h-10 rounded-full glass border-white/10 text-white flex items-center justify-center hover:bg-red-600 transition-all shadow-xl"
                         title="Watch on YouTube"
                       >
-                        <Video className="w-4 h-4" />
+                        <Video className="w-3.5 h-3.5 md:w-4 md:h-4" />
                       </a>
                     )}
                     {project.githubUrl && (
@@ -107,10 +107,10 @@ export default function ProjectSection() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full glass border-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl"
+                        className="w-8 h-8 md:w-10 md:h-10 rounded-full glass border-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl"
                         title="Source Code"
                       >
-                        <Github className="w-4 h-4" />
+                        <Github className="w-3.5 h-3.5 md:w-4 md:h-4" />
                       </a>
                     )}
                   </div>
@@ -166,11 +166,11 @@ export default function ProjectSection() {
                           <div className="absolute inset-0 flex items-center justify-center z-10">
                             <button 
                               onClick={() => setPlayingInline(project.id)}
-                              className="w-20 h-20 rounded-full bg-accent/90 text-black flex items-center justify-center shadow-[0_0_50px_rgba(34,211,238,0.4)] hover:shadow-[0_0_60px_rgba(34,211,238,0.6)] hover:scale-110 transition-all duration-300 relative group/play"
+                              className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-accent/90 text-black flex items-center justify-center shadow-[0_0_50px_rgba(34,211,238,0.4)] hover:shadow-[0_0_60px_rgba(34,211,238,0.6)] hover:scale-110 transition-all duration-300 relative group/play"
                             >
                               <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-30 group-hover/play:opacity-50 transition-opacity" />
                               <div className="absolute inset-[-4px] rounded-full border-2 border-accent/20 animate-pulse" />
-                              <Play className="w-8 h-8 fill-current ml-1 relative z-10" />
+                              <Play className="w-6 h-6 md:w-8 md:h-8 fill-current ml-1 relative z-10" />
                             </button>
                           </div>
                         )}
@@ -188,16 +188,16 @@ export default function ProjectSection() {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 flex-1 flex flex-col">
+                <div className="p-6 md:p-8 flex-1 flex flex-col">
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors truncate pr-2">{project.title}</h3>
+                      <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-accent transition-colors truncate pr-2">{project.title}</h3>
                       <button onClick={() => setSelectedProject(project)}>
-                        <ArrowUpRight className="w-5 h-5 text-gray-600 hover:text-white transition-colors" />
+                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-gray-600 hover:text-white transition-colors" />
                       </button>
                     </div>
-                    <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-4 opacity-80">{project.subtitle}</p>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6 line-clamp-2 italic">
+                    <p className="text-[9px] md:text-[10px] font-bold text-accent uppercase tracking-widest mb-4 opacity-80">{project.subtitle}</p>
+                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed mb-6 line-clamp-2 italic">
                       &quot;{project.description}&quot;
                     </p>
                   </div>
@@ -236,7 +236,7 @@ export default function ProjectSection() {
               initial={{ opacity: 0, scale: 0.9, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
-              className="relative w-full max-w-6xl glass rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl flex flex-col lg:flex-row h-[90vh] lg:h-[70vh]"
+              className="relative w-full max-w-6xl glass rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl flex flex-col lg:flex-row h-[95vh] lg:h-[70vh]"
             >
               {/* Media Side */}
               <div className="lg:w-3/5 bg-black relative">
@@ -261,18 +261,18 @@ export default function ProjectSection() {
               </div>
 
               {/* Content Side */}
-              <div className="lg:w-2/5 p-8 md:p-12 overflow-y-auto custom-scrollbar flex flex-col">
-                <div className="mb-10">
+              <div className="lg:w-2/5 p-6 md:p-12 overflow-y-auto custom-scrollbar flex flex-col">
+                <div className="mb-8 md:mb-10">
                   <button 
                     onClick={() => setSelectedProject(null)}
-                    className="mb-8 w-10 h-10 rounded-full glass border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-all"
+                    className="mb-6 md:mb-8 w-8 h-8 md:w-10 md:h-10 rounded-full glass border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-all"
                   >
-                    <X className="w-5 h-5" />
+                    <X className="w-4 h-4 md:w-5 md:h-5" />
                   </button>
-                  <h3 className="text-4xl font-bold text-white mb-2 leading-tight">{selectedProject.title}</h3>
-                  <p className="text-accent text-sm font-bold uppercase tracking-widest mb-6">{selectedProject.subtitle}</p>
-                  <div className="h-1 w-20 bg-accent rounded-full mb-8" />
-                  <p className="text-gray-400 leading-relaxed text-lg mb-8">{selectedProject.description}</p>
+                  <h3 className="text-2xl md:text-4xl font-bold text-white mb-2 leading-tight">{selectedProject.title}</h3>
+                  <p className="text-accent text-xs md:text-sm font-bold uppercase tracking-widest mb-4 md:mb-6">{selectedProject.subtitle}</p>
+                  <div className="h-1 w-16 md:w-20 bg-accent rounded-full mb-6 md:mb-8" />
+                  <p className="text-gray-400 leading-relaxed text-base md:text-lg mb-6 md:mb-8">{selectedProject.description}</p>
                 </div>
 
                 <div className="space-y-10 mt-auto">
@@ -287,21 +287,21 @@ export default function ProjectSection() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-3 md:gap-4 flex-col sm:flex-row">
                     {selectedProject.liveUrl && (
                       <Button 
                         onClick={() => window.open(selectedProject.liveUrl, '_blank')}
-                        className="flex-1 rounded-2xl h-16 bg-white text-black font-bold hover:bg-gray-200 text-lg"
+                        className="flex-1 rounded-xl md:rounded-2xl h-12 md:h-16 bg-white text-black font-bold hover:bg-gray-200 text-sm md:text-lg"
                       >
-                        <ExternalLink className="mr-2 w-5 h-5" /> Preview
+                        <ExternalLink className="mr-2 w-4 h-4 md:w-5 md:h-5" /> Preview
                       </Button>
                     )}
                     <Button 
                       variant="outline" 
                       onClick={() => window.open(selectedProject.githubUrl, '_blank')}
-                      className="flex-1 rounded-2xl h-16 glass border-white/10 text-white font-bold hover:bg-white/5 text-lg"
+                      className="flex-1 rounded-xl md:rounded-2xl h-12 md:h-16 glass border-white/10 text-white font-bold hover:bg-white/5 text-sm md:text-lg"
                     >
-                      <Github className="mr-2 w-5 h-5" /> Source
+                      <Github className="mr-2 w-4 h-4 md:w-5 md:h-5" /> Source
                     </Button>
                   </div>
                 </div>

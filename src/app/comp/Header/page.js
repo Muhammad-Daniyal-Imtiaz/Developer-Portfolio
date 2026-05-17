@@ -173,12 +173,12 @@ export default function Header() {
             />
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-lg glass rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl"
+              className="relative w-full max-w-lg glass rounded-[2rem] md:rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl mx-4"
             >
-              <div className="p-10">
-                <div className="flex justify-between items-center mb-10">
-                  <h2 className="text-3xl font-black tracking-tighter text-white">{authenticated ? "Inbound Messages" : "Control Center"}</h2>
-                  <button onClick={() => setShowAdminModal(false)} className="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white"><X size={20} /></button>
+              <div className="p-6 md:p-10">
+                <div className="flex justify-between items-center mb-8 md:mb-10">
+                  <h2 className="text-2xl md:text-3xl font-black tracking-tighter text-white">{authenticated ? "Inbound Messages" : "Control Center"}</h2>
+                  <button onClick={() => setShowAdminModal(false)} className="w-8 h-8 md:w-10 md:h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white shrink-0"><X size={20} /></button>
                 </div>
 
                 {authenticated ? (

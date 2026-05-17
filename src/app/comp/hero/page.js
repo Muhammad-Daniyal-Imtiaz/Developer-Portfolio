@@ -203,27 +203,27 @@ export default function HeroSection() {
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-300 whitespace-nowrap">Neural Systems Architect</span>
             </div>
 
-            <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-tighter mb-12 leading-[0.8] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] xl:text-[10rem] font-black tracking-tighter mb-8 md:mb-12 leading-[0.9] md:leading-[0.8] drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
               <span className="block text-white">Future</span>
               <span className="text-gradient block">Built.</span>
             </h1>
 
-            <p className="text-xl md:text-3xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-16 font-medium">
+            <p className="text-lg sm:text-xl md:text-3xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 md:mb-16 font-medium px-4 md:px-0">
               Engineering high-concurrency 
               <span className="text-white font-black"> AI ecosystems</span> with architectural precision.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-10 items-center justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 md:gap-10 items-center justify-center">
               <Button
                 size="lg"
-                className="rounded-[2rem] px-14 h-24 text-xl font-black uppercase tracking-[0.2em] bg-accent text-black hover:bg-accent/90 transition-all hover:scale-105 shadow-[0_0_70px_rgba(34,211,238,0.5)] active:scale-95"
+                className="rounded-[2rem] px-10 h-20 text-lg md:px-14 md:h-24 md:text-xl font-black uppercase tracking-[0.2em] bg-accent text-black hover:bg-accent/90 transition-all hover:scale-105 shadow-[0_0_70px_rgba(34,211,238,0.5)] active:scale-95"
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
               >
                 Launch
-                <ArrowRight className="ml-4 w-7 h-7" />
+                <ArrowRight className="ml-3 md:ml-4 w-6 h-6 md:w-7 md:h-7" />
               </Button>
 
-              <div className="flex items-center gap-4 p-3 glass rounded-[2.5rem] border border-white/5">
+              <div className="flex items-center gap-3 md:gap-4 p-2.5 md:p-3 glass rounded-[2rem] md:rounded-[2.5rem] border border-white/5">
                 {[
                   { icon: Github, href: "https://github.com/Muhammad-Daniyal-Imtiaz" },
                   { icon: Linkedin, href: "https://www.linkedin.com/in/muhammad-daniyal-imtiaz-2b3180283/" },
@@ -234,9 +234,9 @@ export default function HeroSection() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-16 h-16 rounded-2xl glass border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-accent/50 hover:bg-accent/10 transition-all hover:-translate-y-2 hover:scale-110"
+                    className="w-12 h-12 md:w-16 md:h-16 rounded-[1rem] md:rounded-2xl glass border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-accent/50 hover:bg-accent/10 transition-all hover:-translate-y-2 hover:scale-110"
                   >
-                    <social.icon className="w-8 h-8" />
+                    <social.icon className="w-6 h-6 md:w-8 md:h-8" />
                   </a>
                 ))}
               </div>
@@ -247,7 +247,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8 }}
-            className="mt-40 w-full pointer-events-auto"
+            className="mt-20 md:mt-40 w-full pointer-events-auto"
           >
             <div className="text-center mb-8">
               <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.5em]">Select Destination Sector</span>
