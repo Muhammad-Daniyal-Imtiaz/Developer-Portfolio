@@ -226,7 +226,7 @@ export default function HeroSection() {
               <div className="flex items-center gap-4 p-3 glass rounded-[2.5rem] border border-white/5">
                 {[
                   { icon: Github, href: "https://github.com/Muhammad-Daniyal-Imtiaz" },
-                  { icon: Linkedin, href: "https://linkedin.com/in/muhammad-daniyal-imtiaz" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/muhammad-daniyal-imtiaz-2b3180283/" },
                   { icon: Twitter, href: "#" }
                 ].map((social, i) => (
                   <a 
