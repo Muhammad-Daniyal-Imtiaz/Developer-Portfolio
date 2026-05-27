@@ -104,7 +104,7 @@ export default function Header() {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-2 bg-white/5 p-1 rounded-2xl border border-white/5">
-              {["Experience", "Skills", "Projects", "Contact"].map((item) => (
+              {["Experience", "Skills", "Hackathons", "Projects", "Contact"].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -146,7 +146,7 @@ export default function Header() {
                 className="md:hidden overflow-hidden"
               >
                 <div className="pt-6 pb-4 space-y-2">
-                  {["Experience", "Skills", "Projects", "Contact"].map((item) => (
+                  {["Experience", "Skills", "Hackathons", "Projects", "Contact"].map((item) => (
                     <button
                       key={item}
                       onClick={() => scrollToSection(item.toLowerCase())}

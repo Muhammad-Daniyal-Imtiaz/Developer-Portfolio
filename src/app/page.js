@@ -6,6 +6,7 @@ import Header from "./comp/Header/page";
 import HeroSection from "./comp/hero/page";
 import SkillsShowcase from "./comp/skills/page";
 import ProjectSection from "./comp/Projects/page";
+import HackathonSection from "./comp/hackathons/page";
 import CVSection from "./comp/cv/page";
 import ExperienceSection from "./comp/experience/page";
 import ContactSection from "./comp/contact/page";
@@ -43,6 +44,7 @@ export default function Portfolio() {
         <HeroSection />
         <ExperienceSection />
         <SkillsShowcase />
+        <HackathonSection />
         <ProjectSection />
         <CVSection />
         <ContactSection />
