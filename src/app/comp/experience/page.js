@@ -17,6 +17,22 @@ import { Badge } from "@/components/ui/badge"
 export default function ExperienceSection() {
   const experiences = [
     {
+      company: "ConnectIn",
+      role: "Founder & CEO",
+      duration: "Present",
+      location: "Pakistan",
+      type: "Startup",
+      description: "Building and scaling ConnectIn Pakistan, connecting talent with opportunities.",
+      highlights: [
+        "Founded and established the company",
+        "Leading strategic direction and growth",
+        "Building a community of professionals"
+      ],
+      color: "accent",
+      logo: "/connect-in.jpeg",
+      link: "https://www.linkedin.com/company/connectin-pakistan/"
+    },
+    {
       company: "LeadsFlow180",
       role: "Software Developer",
       duration: "Aug 2025 - Present",
@@ -113,8 +129,12 @@ export default function ExperienceSection() {
                   className="relative pl-14 md:pl-20 group"
                 >
                   {/* Timeline Dot */}
-                  <div className="absolute left-0 top-2 w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl glass border border-white/10 flex items-center justify-center z-10 transition-all group-hover:border-accent/50 group-hover:scale-110 shadow-2xl">
-                    <Briefcase className={`w-4 h-4 md:w-6 md:h-6 text-${exp.color}`} />
+                  <div className="absolute left-0 top-2 w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl glass border border-white/10 flex items-center justify-center z-10 transition-all group-hover:border-accent/50 group-hover:scale-110 shadow-2xl overflow-hidden">
+                    {exp.logo ? (
+                      <img src={exp.logo} alt={exp.company} className="w-full h-full object-cover" />
+                    ) : (
+                      <Briefcase className={`w-4 h-4 md:w-6 md:h-6 text-${exp.color}`} />
+                    )}
                   </div>
 
                   <div className="glass rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 border border-white/5 hover:border-white/10 transition-all duration-500 relative overflow-hidden">
@@ -127,7 +147,14 @@ export default function ExperienceSection() {
                         <div>
                           <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{exp.role}</h3>
                           <div className="flex flex-wrap items-center gap-2 md:gap-4 text-xs md:text-sm font-medium">
-                            <span className="text-accent">{exp.company}</span>
+                            {exp.link ? (
+                              <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent/80 transition-colors flex items-center gap-1">
+                                {exp.company}
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            ) : (
+                              <span className="text-accent">{exp.company}</span>
+                            )}
                             <div className="w-1 h-1 rounded-full bg-gray-700 hidden sm:block"></div>
                             <span className="text-gray-400 flex items-center gap-1.5 w-full sm:w-auto mt-1 sm:mt-0">
                               <MapPin className="w-3.5 h-3.5" /> {exp.location}
